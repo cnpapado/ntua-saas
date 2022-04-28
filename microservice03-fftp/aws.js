@@ -8,27 +8,7 @@ AWS.config.update({
     accessKeyId: process.env.S3_ACCESS_KEY,
     secretAccessKey: process.env.S3_SECRET_KEY,
 });
-
 const s3 = new AWS.S3();
-
-// This is some kind of availability check. We should add it into a separate endpoint
-s3.headBucket({
-  Bucket: process.env.S3_BUCKET,
-}, function(err, data) {
-  if (err) console.log(err, err.stack); // an error occurred
-  else     console.log(data);           // successful response
-})
-
-// Call S3 to obtain a list of the objects in the bucket. We should also add this into an endpoint
-s3.listObjects({
-    Bucket: process.env.S3_BUCKET,
-  }, function(err, data) {
-    if (err) {
-      console.log("Error", err);
-    } else {
-      console.log("Success", data);
-    }
-  });
 
 // Download a file from out S3 instance.
 // We should wrap it into a GET endpoint fetching filename from request's URL
