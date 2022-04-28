@@ -1,0 +1,22 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -f microservice02-cicd-demo/dockerfile.dev -t demoapp .
+
+script:
+  - docker run demoapp
+
+# deploy:
+#   provider: elasticbeanstalk
+#   access_key_id: $ACCESS_KEY
+#   secret_access_key: 
+#     secure: $SECRET_ACCESS_KEY
+#   region: "us-east-1"
+#   app: "SaaS"
+#   env: "Saas-env"
+#   bucket_name: "saas-veskoukis-demo-s3-bucket-fnveuibnv"
+#   on:
+#     branch: master

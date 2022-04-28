@@ -1,0 +1,8 @@
+FROM node:latest
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY cicd-demo/package.json ./
+RUN npm install
+COPY cicd-demo .
+EXPOSE 8000
+CMD ["npm", "test"]
