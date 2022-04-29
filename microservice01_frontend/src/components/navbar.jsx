@@ -16,7 +16,7 @@ const Navbar = ({email}) => { // React passes props
                                     johndoe@gmail.com
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="/">
                                     Sign out
                                 </a>
                             </li>

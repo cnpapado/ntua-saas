@@ -1,9 +1,55 @@
 import React from 'react';
 
 const Footer = props => {
+    if (props.welcome !== undefined)
+        return (
+            <div>
+                <footer className="mt-5 modal-footer">
+                    <div className="container-fluid">
+                        <div className="row text-center">
+                            <div className="col">
+                                <a href="#" className="link-secondary text-decoration-none">About</a>
+                            </div>
+                            <div className="col">
+                                <a href="#" className="link-secondary text-decoration-none">Plans</a>
+                            </div>
+                            <div className="col">
+                                <a href="#" className="link-secondary text-decoration-none">Legal</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        );
+
     return (
         <div>
-            <footer className="modal-footer">footer</footer>
+            <footer className="mt-5 modal-footer">
+                <div className="container-fluid">
+                    <div className="row text-center">
+                        <div className="col">
+                            <div href="#" className="text-decoration-none">
+                                Service status: LIVE
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div href="#" className="text-decoration-none">
+                                Days left: 27
+                            </div>
+                        </div>
+                        <div className="col">
+                            <a href="/plan" className="link-secondary text-decoration-none">
+                                Extend plan
+                            </a>
+                        </div>
+                        <div className="col">
+                            <a href="#" className="link-secondary text-decoration-none">
+                                About
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     );
 };

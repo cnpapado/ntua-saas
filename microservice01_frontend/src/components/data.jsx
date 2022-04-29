@@ -10,7 +10,6 @@ class Data extends Component {
                 <Navbar/>
                 <Main/>
                 Lorem ipsum dolor sit amet.
-                <Footer/>
             </div>
         );
     }

@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import Dropdowns from "./dropdowns";
+import graph from '../graph.jpg'; ///
+import Footer from "./footer";
+import logo from "../logo.jpg";
+import {Link} from "react-router-dom";
 
 const Main = props => {
     return (
@@ -10,14 +14,16 @@ const Main = props => {
                         From
                         <input type="date"/>
                         <Dropdowns/>
+
+                        <button className="btn btn-primary" type="button" onClick={() => console.log("refesh clicked")}>
+                            Refresh
+                        </button>
+
                     </div>
 
                     <div className="col bg-success">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, similique.
-
-                        <span className="align-bottom">
-                            HELLO! THIS IS A TEST
-                        </span>
+                        <img className="my-3" src={graph} width="400" alt="Logo"/>
+                        <Footer/>
                     </div>
                 </div>
             </div>

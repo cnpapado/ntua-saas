@@ -21,7 +21,7 @@ class Login extends Component {
                 </div>
 
 
-                <Footer />
+                <Footer welcome={true}/>
             </div>
         );
     }
