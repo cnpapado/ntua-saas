@@ -1,13 +1,21 @@
 require("dotenv").config({path: "./config.env"});
 var express = require('express');
 var app = express();
-const aws_download = require("./aws.js");
-const get_availability = require("./check_aws_availability.js");
-const get_object_list = require("./list_aws_objects.js");
- 
+
+// Get functions from file
+const {aws_download,get_availability,get_object_list} = require("./aws.js");
+
+//Used for parsing request body in the download-file endpoint
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+app.use(express.json());
+
 app.get('/download-file', function(req, res, next){
     try {
-        aws_download(res)
+        aws_download(req,res)
     } catch(e) {
         console.error(e)
         res.status(400).end()

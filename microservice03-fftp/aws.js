@@ -10,15 +10,45 @@ AWS.config.update({
 });
 const s3 = new AWS.S3();
 
+function get_availability(res) {
+	const params = {
+      Bucket: process.env.S3_BUCKET
+    };
+  
+	return s3.headBucket(params, (err, data) =>{
+		if (err) {
+			console.log("Error", err,err.stack);
+		} else {
+			console.log("Success", data);
+		}
+});
+};
+
+function get_object_list(res) {
+	const params = {
+      Bucket: process.env.S3_BUCKET,
+	  Delimiter: '',
+	  Prefix: ''
+    };
+  
+	return s3.listObjects(params, (err, data) =>{
+		if (err) {
+			console.log("Error", err);
+		} else {
+			console.log("Success", data);
+		}
+});
+};
+
 // Download a file from out S3 instance.
-// We should wrap it into a GET endpoint fetching filename from request's URL
-function aws_download(res) {
+// Expects {"csv_path":"..."} in request body 
+function aws_download(req,res) {
     const ext = '.csv'
     const filePath = path.join('newfile' + ext);
-    
+	const {csv_path} = req.body;
     const params = {
       Bucket: process.env.S3_BUCKET,
-      Key: 'sampledata01_stations.csv'
+      Key: csv_path
     };
   
     return s3.getObject(params, (err, data) => {
@@ -42,9 +72,9 @@ function aws_download(res) {
         //   });
         }
       })
-  
+	  
       console.log(`${filePath} has been created!`);
     });
   };
 
-  module.exports = aws_download;
+module.exports = {aws_download, get_availability, get_object_list};
