@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 const Navbar = ({email}) => { // React passes props
     return (
         <div>
-            <nav className="navbar navbar-expand navbar-light bg-light">
+            <nav className="navbar navbar-expand navbar-light">
                 <div className="container-fluid">
                     <span className="navbar-brand mb-01 fs-4">
                         EnergyLive 2022
@@ -13,7 +13,7 @@ const Navbar = ({email}) => { // React passes props
                     <div className="justify-content-end align-center">
                         <ul className="navbar-nav">
                             <li className="navbar-text pe-4 text-dark">
-                                    johndoe@gmail.com
+                                {email}
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="/">
