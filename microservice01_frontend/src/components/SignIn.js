@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { GoogleButton } from 'react-google-button';
 import { UserAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import logo from '../logo.jpg';
+import Footer from "./footer";
 
 const Signin = () => {
   const { googleSignIn, user } = UserAuth();
@@ -30,10 +32,20 @@ const Signin = () => {
 
   return (
     <div>
-      <h1 className='text-center text-3xl font-bold py-8'>Sign in</h1>
-      <div className='max-w-[240px] m-auto py-4'>
-        <GoogleButton onClick={handleGoogleSignIn} />
-      </div>
+      <div>
+                <div className="text-center">
+                    <img className="my-3" src={logo} width="500" alt="Logo"/>
+                </div>
+
+                <h1 className="text-center">EnergyLive 2022</h1>
+                 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+					<GoogleButton onClick={handleGoogleSignIn} />
+				 </div>
+
+
+                <Footer welcome={true}/>
+            </div>
+     
     </div>
   );
 };
