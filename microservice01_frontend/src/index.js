@@ -5,8 +5,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import NoPage from "./components/noPage";
-import Login from "./components/login";
-import GoogleLogin from "./components/GoogleLoginComponent";
+
 import Data from "./components/data";
 import Plan from "./components/plan";
 import Protected from "./firebase/components/Protected"
