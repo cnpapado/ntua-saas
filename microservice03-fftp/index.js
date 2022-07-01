@@ -24,6 +24,7 @@ app.get('/download-file', function(req, res, next){
 });
 
 app.get('/check-availability', function(req, res, next){
+    //res.setTimeout(50000);
     try {
         get_availability(res)
     } catch(e) {

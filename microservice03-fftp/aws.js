@@ -17,11 +17,11 @@ function get_availability(res) {
   
 	return s3.headBucket(params, (err, data) =>{
 		if (err) {
-			console.log("Error", err,err.stack);
+			return res.status(400).send({status: "Error", headBucket_ret_data: null, headBucket_ret_error: err});
 		} else {
-			console.log("Success", data);
+      return res.status(200).send({status: "Success", headBucket_ret_data: data, headBucket_ret_error: null});
 		}
-});
+  });
 };
 
 function get_object_list(res) {
@@ -33,19 +33,20 @@ function get_object_list(res) {
   
 	return s3.listObjects(params, (err, data) =>{
 		if (err) {
-			console.log("Error", err);
+			return res.status(400).send({bucket_objects: null, error: "true"});
 		} else {
-			console.log("Success", data);
-		}
+      return res.status(200).send({bucket_objects: data.Contents, error: "false"});
+    }
 });
 };
 
 // Download a file from out S3 instance.
-// Expects {"csv_path":"..."} in request body 
+// Expects {csv_path:"..."} in request body 
 function aws_download(req,res) {
     const ext = '.csv'
     const filePath = path.join('newfile' + ext);
-	const {csv_path} = req.body;
+	  const csv_path = req.query.csv_path;
+    console.log(csv_path);
     const params = {
       Bucket: process.env.S3_BUCKET,
       Key: csv_path
@@ -62,16 +63,8 @@ function aws_download(req,res) {
           // so check res.headersSent
           // Find out what should we do with this
           console.log(res.headersSent)
-        } else {
-          // remove temp file - unnecessary, right?
-        //   fs.unlink(filePath, function (err) {
-        //       if (err) {
-        //           console.error(err);
-        //       }
-        //       console.log('Temp File Delete');
-        //   });
         }
-      })
+    })
 	  
       console.log(`${filePath} has been created!`);
     });
