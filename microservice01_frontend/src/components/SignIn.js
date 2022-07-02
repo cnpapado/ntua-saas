@@ -1,3 +1,4 @@
+// Sign in component with frontend, google sign in and redirect features
 import React, { useEffect } from 'react';
 import { GoogleButton } from 'react-google-button';
 import { UserAuth } from '../context/AuthContext';
@@ -8,7 +9,7 @@ import Footer from "./footer";
 const Signin = () => {
   const { googleSignIn, user } = UserAuth();
   const navigate = useNavigate();
-
+  //Google sign in handler
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
@@ -16,7 +17,7 @@ const Signin = () => {
       console.log(error);
     }
   };
-
+  // Redirect on logout handler
   useEffect(() => {
     if (user == null) {
       

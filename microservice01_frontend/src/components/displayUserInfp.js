@@ -1,19 +1,21 @@
 import React, {Component} from 'react';
 import { UserAuth } from '../context/AuthContext';
 
-class Plan extends Component {
-    
-	render() {
+const DisplayFirebaseData = () => {
 		const { user, logOut } = UserAuth();
+
         return (
-            <div>
+           
+			<div>
+			 
                 <h1 className="mt-5 mb-3 d-flex justify-content-center">EnergyLive 2022</h1>
                 <div className="container">
                     <form>
                         <div className="row my-3">
+							
                             <label htmlFor="first_name" className="col-2 col-form-label text-end">First Name:</label>
                             <div className="col-10">
-                                <input type="text" className="form-control" id="first_name" defaultValue="John (from google sign-in)"/>
+                                <input type="text" className="form-control" id="first_name" defaultValue={user?.name}/>
                             </div>
                         </div>
                         <div className="row my-3">
@@ -68,6 +70,6 @@ class Plan extends Component {
             </div>
         );
     }
-}
 
-export default Plan;
+
+export default DisplayFirebaseData;
