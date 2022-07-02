@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import Navbar from "./navbar";
 import Dropdowns from "./dropdowns";
 import Chart from "./chart";
+import { UserAuth } from '../context/AuthContext';
 
 class Data extends Component {
-    state = {
+    
+	state = {
         dd_shown_id: 1,
         email: "johndoe@gmail.com",
         cty: "?",
@@ -39,7 +41,7 @@ class Data extends Component {
     render() {
         return (
             <div>
-                <Navbar email={this.state.email}/>
+                <Navbar/>
 
                 <div className="container mt-3">
                     <div className="row">

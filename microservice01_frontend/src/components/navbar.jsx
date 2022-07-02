@@ -1,8 +1,20 @@
 import React, {Component} from 'react';
+import { UserAuth } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 // Stateless functional component
-const Navbar = ({email}) => { // React passes props
-    return (
+const Navbar = () => { // React passes props
+     const { user, logOut } = UserAuth();
+
+	  const handleSignOut = async () => {
+		try {
+		  await logOut()
+		} catch (error) {
+		  console.log(error)
+		}
+	  }
+
+	return (
         <div>
             <nav className="navbar navbar-expand navbar-light">
                 <div className="container-fluid">
@@ -13,12 +25,15 @@ const Navbar = ({email}) => { // React passes props
                     <div className="justify-content-end align-center">
                         <ul className="navbar-nav">
                             <li className="navbar-text pe-4 text-dark">
-                                {email}
+                                {user?.email}
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/">
-                                    Sign out
-                                </a>
+                                {user?.displayName ? (
+									<button className="nav-link" onClick={handleSignOut}>Sign out</button>
+								  ) : (
+									<Link to='/'>Sign in</Link>
+								  )}
+								
                             </li>
                         </ul>
                     </div>

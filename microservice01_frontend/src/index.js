@@ -5,21 +5,28 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import NoPage from "./components/noPage";
-import Login from "./components/login";
+
 import Data from "./components/data";
 import Plan from "./components/plan";
+import Protected from "./firebase/components/Protected"
+
+import { AuthContextProvider } from './context/AuthContext';
+
+import SignIn from './components/SignIn';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <BrowserRouter>
+    <AuthContextProvider>
+	  <BrowserRouter>
           <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="data" element={<Data />} />
-              <Route path="plan" element={<Plan />} />
+			  <Route path="/" element={<SignIn />} />
+              <Route path="data" element={<Protected><Data /></Protected>} />
+              <Route path="plan" element={<Protected><Plan /></Protected>} />
               <Route path="*" element={<NoPage />} />
           </Routes>
       </BrowserRouter>
+	</AuthContextProvider>
   </React.StrictMode>
 );
 
