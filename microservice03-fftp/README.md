@@ -5,3 +5,14 @@ This is getting towards becoming an API giving access to the ENTSOE datasets, li
 ## Restful endpoints
 
 ### todo
+
+## Kafka debugging using the CLI
+
+```
+confluent kafka cluster list
+confluent kafka cluster use <cluster-id>
+confluent kafka topic consume <topic-name> -b --print-key
+or
+confluent kafka topic produce <topic-name> --parse-key --delimiter ,
+```
+you may need `export PATH=$(pwd)/bin:$PATH` before using kafka cli

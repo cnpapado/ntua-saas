@@ -41,32 +41,20 @@ function get_object_list(res) {
 };
 
 // Download a file from out S3 instance.
-// Expects {csv_path:"..."} in request body 
-function aws_download(req,res) {
-    const ext = '.csv'
-    const filePath = path.join('newfile' + ext);
-	  const csv_path = req.query.csv_path;
-    console.log(csv_path);
+function aws_download(inFilename, next) {
+    const outFilename = path.join('newfile.csv');
+	  
+    // console.log(inFilename);
     const params = {
       Bucket: process.env.S3_BUCKET,
-      Key: csv_path
+      Key: inFilename
     };
   
     return s3.getObject(params, (err, data) => {
-      if (err) console.error(err);
-      fs.writeFileSync(filePath, data.Body);
-  
-      //download
-      res.download(filePath, function (err) {
-        if (err) {
-          // Handle error, but keep in mind the response may be partially-sent
-          // so check res.headersSent
-          // Find out what should we do with this
-          console.log(res.headersSent)
-        }
-    })
-	  
-      console.log(`${filePath} has been created!`);
+      if (err) console.error(err);                  //TODO: needs correct error handling to the caller function
+      fs.writeFileSync(outFilename, data.Body);
+      console.log(`${outFilename} has been created!`);
+      next();
     });
   };
 

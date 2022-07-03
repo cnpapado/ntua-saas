@@ -15,12 +15,14 @@ app.use(express.json());
 
 app.get('/download-file', function(req, res, next){
     try {
-        aws_download(req,res)
+        const filename = req.query.csv_path;  //"datasets/agpt/2022_01_01_03_AggregatedGenerationPerType16.1.BC.csv";
+        aws_download(filename, () => {
+            res.status(200).end();
+        })
     } catch(e) {
-        console.error(e)
-        res.status(400).end()
+        console.error("Unhandled error: ", e);
+        res.status(400).end();
     }
-
 });
 
 app.get('/check-availability', function(req, res, next){

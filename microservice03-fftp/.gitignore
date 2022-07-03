@@ -2,3 +2,4 @@
 node_modules
 aws_credentials
 newfile.csv
+*.lck
