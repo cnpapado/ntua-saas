@@ -2,7 +2,6 @@ const express         = require('express')
 const mysql           = require('mysql')
 const bodyParser      = require('body-parser')
 const fs              = require('fs')
-const fastcsv         = require("fast-csv")
 const app             = express()
 const credentials1    = require('./config/credentials1')
 const credentials2    = require('./config/credentials2')
@@ -13,6 +12,7 @@ const totalload       = require('./config/queries')
 const readfile        = require('./config/readfile')
 const execute         = require('./config/execute')
 const deleteStatement = require('./config/deletestm')
+
 const { create }      = require('domain');
 const port            = 8000;
 //initialize app as an instance of express, the framework
@@ -51,10 +51,7 @@ const establish_connection = async () => {
           //console.log(fileName);
           if(fileName[0]!=='.'){
             let month = parseInt(fileName.slice(5,7));
-            console.log(month);
-            await execute(deleteStatement,[month],con);
-            let selectstm =  `SELECT * FROM totalload`
-            await execute(selectstm,[],con);
+            await execute(deleteStatement(month),[],con);
             readfile(dir,fileName,con); 
           }
       });

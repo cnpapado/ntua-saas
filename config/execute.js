@@ -3,7 +3,7 @@ const execute = (stm,items,con) => {
         var conn = con.query(stm, items,
             (err,res) => {
                 if(err) throw err;
-                console.log(res);
+                //console.log(res);
             });
         resolve(conn);
     })
