@@ -9,10 +9,12 @@ import {
 import { auth } from '../firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 
+
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
+
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
@@ -27,7 +29,16 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      if(currentUser!==null){
+		currentUser["firstName"] = (currentUser?.displayName)?.split(' ')[0];
+		currentUser["lastName"] = (currentUser?.displayName)?.split(' ')[1];
+		currentUser["lastLoginDate"] = new Date(parseInt(currentUser?.metadata?.lastLoginAt)).toLocaleDateString();
+		console.log(typeof currentUser?.metadata?.lastLoginAt);
+		console.log( new Date(parseInt(currentUser?.metadata?.lastLoginAt)).toLocaleDateString());
+		
+		
+	  }
+	  setUser(currentUser);
       console.log('User', currentUser)
     });
     return () => {
