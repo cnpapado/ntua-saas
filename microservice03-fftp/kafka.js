@@ -25,7 +25,6 @@ function ensureTopicExists() {
       if (err.code === ERR_TOPIC_ALREADY_EXISTS) {
         return resolve();
       }
-
       return reject(err);
     });
   });
@@ -34,8 +33,8 @@ function ensureTopicExists() {
 function createProducer(onDeliveryReport) {
   const producer = new Kafka.Producer({
     'bootstrap.servers': "pkc-03vj5.europe-west8.gcp.confluent.cloud:9092",
-    'sasl.username': "OVB37BUHAGPWJKF5",
-    'sasl.password': "DVPX7TPSnSwiKSrGiXAONQPi7rjNVVHSe87PiOQQNsAi02IHzEtdw3cSyZOpGb0g",
+    'sasl.username': "VUVCRRWVK4VCC4IE",
+    'sasl.password': "CIlD5L/yeLYdSf1or8PUHYHpQ03bNkKt5pKy8ibDXbhYOIvzAqMMsTcWzH8s2yma",
     'security.protocol': "SASL_SSL",
     'sasl.mechanisms': "PLAIN",
     'dr_msg_cb': true
@@ -55,7 +54,7 @@ function createProducer(onDeliveryReport) {
 
 async function produce(key, value) {
   await ensureTopicExists();
-
+  console.log("producing...")
   const producer = await createProducer((err, report) => {
     if (err) {
       console.warn('Error producing', err)
@@ -68,16 +67,12 @@ async function produce(key, value) {
   console.log(`Producing record ${key}\t${value}`);
 
   producer.produce("fft-csv", -1, value, key);
-
+  
   producer.flush(10000, () => {
     producer.disconnect();
   });
 }
 
-// produce()
-//   .catch((err) => {
-//     console.error(`Something went wrong:\n${err}`);
-//     process.exit(1);
-//   });
+// module.exports = produce;
 
-module.exports = produce;
+produce("hey", "you");
