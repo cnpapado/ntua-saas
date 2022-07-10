@@ -12,7 +12,7 @@ It also provides an REST api for debugging and monitoring purposes.
 - If you want to use the debugging api start the rest server with `node routes.js`.
 - To download and publish a single datafile use:  
 ```shell
-node publish_csv.js -f <FILENAME> -t <KAFKA_TOPIC> [-local <PATH>]
+node publish_csv.js -f <FILENAME> -t <KAFKA_TOPIC> [--local <PATH>]
 ```
 If `--local` flag is ommited then the dataset file specified in `<FILENAME>` is downloaded from the S3 bucket (which is configured in `config.env`) and published in the `<KAFKA_TOPIC>` Confluent topic.
 
@@ -56,7 +56,7 @@ Checks if the S3 is available and if we can connect to it.
   - none
 - **return**:
   - on success: 200 status code and the following object:
-  ```json
+  ```javascript
   {
     status: "Success", 
     headBucket_ret_data: <DATA>, 
@@ -65,7 +65,7 @@ Checks if the S3 is available and if we can connect to it.
   ```  
 
   - on failure: 400 status code code and the following object:
-  ```json
+  ```javascript
   {
     status: "Error", 
     headBucket_ret_data: null, 
@@ -80,7 +80,7 @@ Lists all objects in the S3 bucket.
   - none
 - **return**:
   - on success: 200 status code and the following object:
-  ```json
+  ```javascript
   {
     bucket_objects: <JSON_LIST>, 
     error: "false"
@@ -88,7 +88,7 @@ Lists all objects in the S3 bucket.
   ```  
 
   - on failure: 400 status code code and the following object:
-  ```json
+  ```javascript
   {
     bucket_objects: null, 
     error: "true"
