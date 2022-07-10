@@ -38,7 +38,7 @@ for hour in hourly_it(start, finish):
     sleep(args.sec)
 
 
-
+# python3 publisher_deamon.py --dataset agpt --topic fft-csv --start-date 2022-1-1 --end-date 2022-2-2 -t 2
 
 
 
