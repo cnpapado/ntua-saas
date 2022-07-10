@@ -20,9 +20,10 @@ parser = argparse.ArgumentParser(description='Periodically publish ENTSOE csv da
 
 # Command line arguments: -t KAFKA_TOPIC -f CSV_FILENAME
 parser.add_argument("--dataset", choices=["fft", "agpt", "atl"], help="Dataset type")
-parser.add_argument("-t", "--topic", help="Kafka topic to publish the csv dataset file")
+parser.add_argument("--topic", type = str, help="Kafka topic to publish the csv dataset file")
 parser.add_argument("-start", "--start-date", type = date, help="Start date of the filenames")
 parser.add_argument("-end", "--end-date", type = date, help="End date of the filenames")
+parser.add_argument("-t", "--sec", type = int, help="Time in seconds between each csv publication")
 # parser.add_argument("-f", "--filename", help="Filename of the csv dataset file to be published. If ommitted will download all files from this dataset.")
 
 args = parser.parse_args()
@@ -33,7 +34,8 @@ csv_filename_format = "datasets/" + args.dataset + "/%Y_%m_%d_%H_AggregatedGener
 for hour in hourly_it(start, finish):
     csv_filename = hour.strftime(csv_filename_format)
     os.system("node publish_csv.js -f {} -t {}".format(csv_filename, args.topic))
-    sleep(3000)
+    # print("node publish_csv.js -f {} -t {}".format(csv_filename, args.topic))
+    sleep(args.sec)
 
 
 

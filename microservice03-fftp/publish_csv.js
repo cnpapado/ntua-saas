@@ -7,31 +7,51 @@ const fs = require("fs");
 const csv = require("fast-csv");
 const {aws_download,get_availability,get_object_list} = require("./aws.js");
 const producer = require("./kafka.js");
+const { nextTick } = require("process");
 
-const produce_msg = async (i, row) => {
-    await producer.send({
-        topic: topic,
-        messages: [
-            { key: i.toString(), value: JSON.stringify(row)}
-        ]
-    })
-}
 
-function publish_csv(filename, topic) {
+
+function publish_csv(filename, topic, next) {
     // connect to the kafka producer
     producer.connect();
     aws_download(filename, async () => {
-        let i = 0;
-        fs.createReadStream("./newfile.csv")
+        var i = 0;
+        
+        const produce_msg = async (i, val, topic) => {
+            await producer.send({
+                topic: topic,
+                messages: [
+                    { key: i.toString(), value: JSON.stringify(val)}
+                ]
+            })
+        }
+
+        const stream = fs.createReadStream("./newfile.csv")
             .pipe(csv.parse({ headers: true, delimiter: '\t' }))
             .on('error', error => console.error("Error while reading temp csv file", error))
-            .on('data', (row) => {
-                produce_msg(i, row).catch(e => console.error(`[kafka-producer] ${e.message}`, e))
-                ++i
+            // .on('data', async (row) => {
+            //     await produce_msg(i++, row, topic).catch(e => console.error(`[kafka-producer] ${e.message}`, e))
+            //     // ++i
+            // })
+
+            .on('data', async (row) => {
+                try {
+                    stream.pause();
+                    await produce_msg(i++, row, topic).catch(e => console.error(`[kafka-producer] ${e.message}`, e));
+                } finally {
+                    stream.resume();
+                }
             })
-            .on('end', rowCount => console.log(`Parsed ${rowCount} rows`));
+
+
+
+            .on('end', rowCount => {
+                console.log(`Parsed ${rowCount} rows`);
+                next();
+            });
         
     });
+    
 };
 
 const argv = yargs(hideBin(process.argv)).argv
@@ -42,5 +62,5 @@ if (topic == undefined || filename == undefined) {
     console.error(`Please specify both filename (-f) and topic (-t) command line options`)
     process.exit(1);
 }
-
-publish_csv(filename, topic)
+console.log("Publishing ", filename)
+publish_csv(filename, topic, () => {process.exit(0);});
