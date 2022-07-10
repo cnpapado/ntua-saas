@@ -1,15 +1,10 @@
 const db                         = require('./firebase/firebase-config');
 const express                    = require('express')
-const mysql                      = require('mysql')
 const bodyParser                 = require('body-parser')
 const fs                         = require('fs')
 const app                        = express()
-const credentials2               = require('./config/credentials2')
 const path                       = require('path')
-const connection                 = require('./config/connect')
-//const totalload                  = require('./config/queries')
 const readfile                   = require('./config/readfile')
-const execute                    = require('./config/execute')
 const port                       = 8000;
 
 const totalload       = require('./firebase/firebase-config');
@@ -23,23 +18,7 @@ app.listen(port, () =>{
     console.log('We are live on port ' + port);
 });
 
-//establish a connection
-function create_connection(credentials) {
-  return new Promise((resolve) => {
-    var con = mysql.createConnection(credentials);
-    resolve(con);
-  })
-}
-
 const establish_connection = async () => {
-  let con;
-  // try {
-  //   con = await create_connection(credentials1);
-  // }
-  // catch(e){
-  con = await create_connection(credentials2);
-  connection(con);
-  //await execute(totalload(),[],con);
   const dir = path.resolve('D:\saas/test');
   fs.readdir(dir, async function (err, files) {
       //handling error
@@ -50,7 +29,16 @@ const establish_connection = async () => {
       files.forEach(async function (fileName) {
           //console.log(fileName);
           if(fileName[0]!=='.'){
-            let month = parseInt(fileName.slice(5,7));
+            let month = parseInt(fileName.slice(5,7)) + 1;
+            let strdate = month.toString().concat('/','02/2022');
+            let maxdate = new Date(strdate);
+            let todelete = totalload.where("DateTime","<",maxdate);
+            todelete.get().then(function(querySnapshot) {
+              querySnapshot.forEach(function(doc) {
+                doc.ref.delete();
+              });
+            });
+            console.log(todelete);
             readfile(dir,fileName,totalload); 
           }
       });
