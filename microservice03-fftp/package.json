@@ -4,14 +4,20 @@
   "description": "## (name)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/tests.js --exit"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.1123.0",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "dotenv": "^16.0.0",
     "express": "^4.18.0",
-    "fs": "0.0.1-security"
+    "fast-csv": "^4.3.6",
+    "fs": "0.0.1-security",
+    "kafkajs": "^2.1.0",
+    "mocha": "^10.0.0",
+    "yargs": "^17.5.1"
   }
 }
