@@ -1,8 +1,8 @@
 FROM node:latest
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-COPY package.json ./
+COPY microservice02-cicd-demo/package.json ./
 RUN npm install
-COPY . .
+COPY microservice02-cicd-demo .
 EXPOSE 8000
-CMD ["npm", "test"]
+CMD ["npm", "start"]
