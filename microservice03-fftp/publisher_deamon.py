@@ -36,8 +36,18 @@ if not args.local_path == None:
     if not os.path.exists(os.path.join(args.local_path, "datasets", args.dataset)):
         print("Local path not valid. Path `{}` does not contain folder structure `{}`".format(args.local_path, "datasets/" + args.dataset))
         exit(-1)
-csv_filename_format = "datasets/" + args.dataset + "/%Y_%m_%d_%H_AggregatedGenerationPerType16.1.BC.csv"
 
+
+if args.dataset == "agpt":        
+    csv_filename_format = "datasets/agpt/%Y_%m_%d_%H_AggregatedGenerationPerType16.1.BC.csv"
+elif args.dataset == "atl":
+    csv_filename_format = "datasets/atl/%Y_%m_%d_%H_ActualTotalLoad_6.1.A.csv"
+elif args.dataset == "fft":
+    csv_filename_format = "datasets/ff/%Y_%m_%d_%H_PhysicalFlows_12.1.G.csv"
+else:
+    print("Invalid dataset value");
+    exit(-1);
+    
 for hour in hourly_it(start, finish):
     csv_filename = hour.strftime(csv_filename_format)
 
