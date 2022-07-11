@@ -32,9 +32,10 @@ args = parser.parse_args()
 start = datetime.strptime(args.start_date, '%Y-%m-%d')
 finish = datetime.strptime(args.end_date, '%Y-%m-%d')
 
-if not os.path.exists(os.path.join(args.local_path, "datasets", args.dataset)):
-    print("Local path not valid. Path `{}` does not contain folder structure `{}`".format(args.local_path, "datasets/" + args.dataset))
-    exit(-1)
+if not args.local_path == None:
+    if not os.path.exists(os.path.join(args.local_path, "datasets", args.dataset)):
+        print("Local path not valid. Path `{}` does not contain folder structure `{}`".format(args.local_path, "datasets/" + args.dataset))
+        exit(-1)
 csv_filename_format = "datasets/" + args.dataset + "/%Y_%m_%d_%H_AggregatedGenerationPerType16.1.BC.csv"
 
 for hour in hourly_it(start, finish):
