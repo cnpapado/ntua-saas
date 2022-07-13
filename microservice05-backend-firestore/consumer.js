@@ -1,21 +1,6 @@
-require("dotenv").config({path: "./config.env"});
-const { Kafka } = require('kafkajs');
+const consumer = require('./config/kafka.js');
+const topic = 'fft-csv';
 
-const kafka = new Kafka({
-    clientId: "consumer",
-    brokers: [process.env.CONFLUENT_BROCKER],  
-    ssl: true,
-    sasl: { 
-        mechanism: 'plain', 
-        password: process.env.CONFLUENT_SECRET_KEY, 
-        username: process.env.CONFLUENT_ACCESS_KEY 
-    }
-})
-
-
-
-const topic = 'fft-csv'
-const consumer = kafka.consumer({ groupId: 'my-group' })
 
 const run = async () => {
   await consumer.connect()

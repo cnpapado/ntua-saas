@@ -10,16 +10,17 @@ const port                       = 8000;
 const totalload       = require('./firebase/firebase-config');
 
 //initialize app as an instance of express, the framework
-
+/*
 app.use(bodyParser.urlencoded({extended:true}));
 //we import the route into the server
 require('./routes')(app, {});
 app.listen(port, () =>{
     console.log('We are live on port ' + port);
 });
+*/
 
 const establish_connection = async () => {
-  const dir = path.resolve('D:\saas/test');
+  const dir = path.resolve('~\d\saas/test');
   fs.readdir(dir, async function (err, files) {
       //handling error
       if (err) {
