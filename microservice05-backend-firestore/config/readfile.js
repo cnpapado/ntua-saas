@@ -7,10 +7,9 @@ const readfile = async (dir,fileName,totalload) => {
     fs.createReadStream(path.resolve(dir + '\\' + fileName))
     .pipe(parse({relaxed_quotes: true, delimiter: "\t", from_line: 2 }))
     .on("data", async function (row) {
+        //row = row[0].split('\t')
         //console.log(row)
-        row = row[0].split('\t')
         if(row[3] === 'CTY'){
-            var items = [row[0],row[1],row[5].replace("-","_"),row[6],row[7],row[7]];
             /*Inserting data of current, row
             into database*/
             data = {
