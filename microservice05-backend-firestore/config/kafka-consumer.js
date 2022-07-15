@@ -1,9 +1,16 @@
 require("dotenv").config({path: "./config.env"});
-const { Kafka } = require('kafkajs');
+const { Kafka, logLevel } = require('kafkajs');
 
 const kafka = new Kafka({
     clientId: "consumer",
-    brokers: [process.env.CONFLUENT_BROCKER],  
+    brokers: [process.env.CONFLUENT_BROCKER],
+    logLevel: logLevel.ERROR,
+    connectionTimeout: 1000,
+    requestTimeout: 30000,
+    retry: {
+        initialRetryTime: 100,
+        retries: 8
+      },        
     ssl: true,
     sasl: { 
         mechanism: 'plain', 

@@ -1,15 +1,19 @@
 const producer  = require('./config/kafka-producer.js');
 const totalload = require('./firebase/firebase-config');
+require("dotenv").config({path: "./config.env"});
 topic = 'atl-csv'
-const run = async () => {
+
+const publish = async () => {
+    
     await producer.connect();
     var i = 0;
     i++;
    const snapshot = await totalload.get();
-    snapshot.forEach(doc => {
-        produce_msg(i,doc.data(),topic);
+    snapshot.forEach(async (doc) => {
+        console.log(doc.data());
+        await produce_msg(i,doc.data(),topic);
     })
-    //await Promise.all(promiselist)
+    //await produce_msg(0,{'hello':'hi'},topic);
 }
 const produce_msg = async (i, val, topic) => {
     await producer.send({
@@ -19,7 +23,8 @@ const produce_msg = async (i, val, topic) => {
         ]
     })
 }
-run().catch(e => console.error(`[example/producer] ${e.message}`, e))
+//comment out that line in order to run the dunction in the consumer.js 
+publish().catch(e => console.error(`[example/producer] ${e.message}`, e))
 
 const errorTypes = ['unhandledRejection', 'uncaughtException']
 const signalTraps = ['SIGTERM', 'SIGINT', 'SIGUSR2']
@@ -45,3 +50,4 @@ signalTraps.forEach(type => {
     }
   })
 })
+module.exports = publish
