@@ -41,9 +41,9 @@ if not args.local_path == None:
 if args.dataset == "agpt":        
     csv_filename_format = "datasets/agpt/%Y_%m_%d_%H_AggregatedGenerationPerType16.1.BC.csv"
 elif args.dataset == "atl":
-    csv_filename_format = "datasets/atl/%Y_%m_%d_%H_ActualTotalLoad_6.1.A.csv"
+    csv_filename_format = "datasets/atl/%Y_%m_%d_%H_ActualTotalLoad6.1.A.csv"
 elif args.dataset == "fft":
-    csv_filename_format = "datasets/ff/%Y_%m_%d_%H_PhysicalFlows_12.1.G.csv"
+    csv_filename_format = "datasets/ff/%Y_%m_%d_%H_PhysicalFlows12.1.G.csv"
 else:
     print("Invalid dataset value");
     exit(-1);

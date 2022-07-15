@@ -42,9 +42,14 @@ async function upload_csv(file, topic, next) {
             }
         })
 
-        .on('end', rowCount => {
-            console.log(`Parsed ${rowCount} rows`);
-            next();
+        .on('end', async (rowCount) => {
+            try{
+                await produce_msg(i++, {"EOF":"true"}, topic).catch(e => console.error(`[kafka-producer] ${e.message}`, e));
+            }
+            finally {
+                console.log(`Parsed ${rowCount} rows`);
+                next();
+            }
         });
 }
 
