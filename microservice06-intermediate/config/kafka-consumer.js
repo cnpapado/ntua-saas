@@ -2,7 +2,7 @@ require("dotenv").config({path: "./config.env"});
 const { Kafka } = require('kafkajs');
 
 const kafka = new Kafka({
-    clientId: "producer",
+    clientId: "producer_intermediate",
     //brokers: [process.env.CONSUMER_CONFLUENT_BROCKER],
     brokers : ["pkc-75m1o.europe-west3.gcp.confluent.cloud:9092"],
     connectionTimeout: 10000,
@@ -23,5 +23,5 @@ const kafka = new Kafka({
     }
 })
 
-const producer = kafka.producer();
-module.exports = producer;
+const consumer = kafka.consumer({ groupId: 'new-group' });
+module.exports = consumer;
