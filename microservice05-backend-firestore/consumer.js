@@ -2,22 +2,25 @@ const totalload = require('./firebase/firebase-config');
 const consumer  = require('./config/kafka-consumer.js');
 const producer  = require('./config/kafka-producer.js');
 const topic     = 'atl-csv';
-const publish   = require('./publish_to_frontend.js');
+const publish   = require('./publish_to_intermediate.js');
 
 const delete_previous_month = (month) => {
     return new Promise((resolve,reject) => {
         let strdate = month.toString().concat('/','02/2022');
         let maxdate = new Date(strdate);
         let todelete = totalload.where("DateTime","<",maxdate);
-        if(todelete.get() === NULL) {
-          reject();
-        }
         todelete.get().then(async function(querySnapshot) {
-            querySnapshot.forEach(async function(doc) {
-            await doc.ref.delete();
-            resolve()
-              })
+            if(querySnapshot.empty){
+              reject()
+            }
+            else {
+              querySnapshot.forEach(async function(doc) {
+              await doc.ref.delete();
+              resolve()
+                })
+            }
             })
+          
 
     })
 }
