@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { UserAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import map_app from '../map_app.png';
+import logo from "../logo.jpg";
 
 // Stateless functional component
 const Navbar = () => { // React passes props
@@ -24,6 +26,12 @@ const Navbar = () => { // React passes props
 
                     <div className="justify-content-end align-center">
                         <ul className="navbar-nav">
+                            <li className="mx-5">
+                                <a href="/map">
+                                    Click me for map
+                                    <img src={map_app} width='50' height='50' alt="Click here for map!"/>
+                                </a>
+                            </li>
                             <li className="navbar-text pe-4 text-dark">
                                 {user?.email}
                             </li>
