@@ -58,7 +58,8 @@ class MyMap extends Component {
     };
     render() { 
         return (<div>
-            <h1 style={{textAlign: "center"}}>Map of Europe</h1>
+            <h1 style={{textAlign: "center", position: 'relative'}}>Map of Europe</h1>
+            <a href="data" style={{zIndex: '1',  position: 'absolute', top: '0px', right: '30px'}}>Go back →</a>
             <MapContainer style={{height:"80vh"}}zoom={3.5} center={[55,26]}>
                 <GeoJSON style={this.countryStyle} data={mapData.features} onEachFeature={this.onEachCountry}></GeoJSON>
             </MapContainer>
