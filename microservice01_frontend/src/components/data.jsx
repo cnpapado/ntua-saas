@@ -3,6 +3,7 @@ import Navbar from "./navbar";
 import Dropdowns from "./dropdowns";
 import Chart from "./chart";
 import { UserAuth } from '../context/AuthContext';
+import mapData from './MyMapAssets/europe.json';
 
 class Data extends Component {
     
@@ -11,19 +12,24 @@ class Data extends Component {
         email: "johndoe@gmail.com",
         cty: "?",
         ctyTo: "??",
-        ctyList: ["CTY_1", "CTY_2", "CTY_3"],
+        ctyList: ["Albania", "Bosnia and Herzegovina", "Bulgaria","Cyprus", "Denmark","Ireland","Estonia","Austria","Czech Republic","Finland","France","Germany","Greece","Croatia","Hungary","Turkey","Italy","Latvia","Belarus","Lithuania","Slovakia","Liechtenstein","The former Yugoslav Republic of Macedonia","Malta","Belgium","Faroe Islands","Andorra","Luxembourg","Monaco","Montenegro","Netherlands","Norway","Poland","Portugal","Romania","Republic of Moldova","Slovenia","Spain","Sweden","Switzerland","United Kingdom","Ukraine","San Marino","Serbia","Holy See (Vatican City)"],
 		dateFrom: '01/01/2010'
         //TODO: notify Chart to show noChart: noChart={this.state.cty === this.state.ctyTo}
     }
     componentDidMount() {
+		console.log(mapData);
         const newState = {...this.state}
-        const ctyListFetched = ["CDM_CTY_1", "CDM_CTY_2", "CDM_CTY_3"]
+        const ctyListFetched = ["Albania", "Bosnia and Herzegovina", "Bulgaria","Cyprus", "Denmark","Ireland","Estonia","Austria","Czech Republic","Finland","France","Germany","Greece","Croatia",
+		"Hungary","Turkey","Italy","Latvia","Belarus","Lithuania","Slovakia","Liechtenstein","The former Yugoslav Republic of Macedonia","Malta","Belgium","Faroe Islands","Andorra",
+		"Luxembourg","Monaco","Montenegro","Netherlands","Norway","Poland","Portugal","Romania","Republic of Moldova","Slovenia","Spain","Sweden","Switzerland","United Kingdom",
+		"Ukraine","San Marino","Serbia","Holy See (Vatican City)"]
         newState.ctyList = ctyListFetched;
         this.setState(newState);
 	
 	}
 	//WIP - remove duplicate code and add into function
     handleQuantityChange = (obj) => {
+		console.log(mapData.features);
         //console.log(obj.target.value);
         const newState = {...this.state}
         newState.dd_shown_id = parseInt(obj.target.value);
