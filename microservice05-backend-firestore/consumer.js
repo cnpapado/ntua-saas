@@ -2,7 +2,6 @@ const totalload = require('./firebase/firebase-config');
 const consumer  = require('./config/kafka-consumer.js');
 const producer  = require('./config/kafka-producer.js');
 const topic     = 'atl-csv';
-const runScript = require('./child_process.js');
 const publish   = require('./publish_to_frontend.js');
 
 const delete_previous_month = (month) => {
@@ -10,6 +9,9 @@ const delete_previous_month = (month) => {
         let strdate = month.toString().concat('/','02/2022');
         let maxdate = new Date(strdate);
         let todelete = totalload.where("DateTime","<",maxdate);
+        if(todelete.get() === NULL) {
+          reject();
+        }
         todelete.get().then(async function(querySnapshot) {
             querySnapshot.forEach(async function(doc) {
             await doc.ref.delete();
@@ -40,7 +42,7 @@ const run = async () => {
       if(key === 0 && msg.DateTime!==undefined) {
         console.log("new csv file!");
         let month = parseInt(msg.DateTime.slice(5,7)) + 1;
-        //await delete_previous_month(month);
+        await delete_previous_month(month);
         }
       if(msg.AreaTypeCode !== undefined && msg.AreaTypeCode === 'CTY'){
         /*Inserting data of current, row
