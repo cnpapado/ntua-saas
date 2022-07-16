@@ -33,6 +33,7 @@ const run = async () => {
       await intermediate_ATL.doc( (new Date(msg.DateTime._seconds * 1000 + msg.DateTime._nanoseconds/1000000)).toString().concat('-',msg.MapCode)).set(data);
     }
   })
+  console.log("reach")
 }
 
 run().catch(e => console.error(`[example/consumer] ${e.message}`, e))
