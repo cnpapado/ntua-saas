@@ -10,7 +10,8 @@ const kafka = new Kafka({
     
     retry: {
         initialRetryTime: 100,
-        retries: 20
+        retries: 20,
+        restartOnFailure: true
       },      
     ssl: true,
     allowAutoTopicCreation: true,

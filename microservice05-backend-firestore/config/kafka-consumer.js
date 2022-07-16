@@ -5,11 +5,12 @@ const kafka = new Kafka({
     clientId: "consumer",
     brokers: [process.env.CONFLUENT_BROCKER],
     logLevel: logLevel.ERROR,
-    connectionTimeout: 1000,
+    connectionTimeout: 10000,
     requestTimeout: 30000,
     retry: {
         initialRetryTime: 100,
-        retries: 8
+        retries: 8,
+        restartOnFailure: true
       },        
     ssl: true,
     sasl: { 
