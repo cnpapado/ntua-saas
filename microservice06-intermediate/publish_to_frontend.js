@@ -24,7 +24,7 @@ const produce_msg = async (i, val, topic) => {
     })
 }
 //comment out that line in order to run the dunction in the consumer.js 
-publish().catch(e => console.error(`[example/producer] ${e.message}`, e))
+//publish().catch(e => console.error(`[example/producer] ${e.message}`, e))
 
 const errorTypes = ['unhandledRejection', 'uncaughtException']
 const signalTraps = ['SIGTERM', 'SIGINT', 'SIGUSR2']

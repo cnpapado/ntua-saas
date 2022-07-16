@@ -13,9 +13,9 @@ const run = async () => {
       const prefix = `${topic}[${partition} | ${message.offset}] / ${message.timestamp}`;
       console.log(`- ${prefix} ${message.key}#${message.value}`);
       var key = parseInt(message.key)
-      var msg = message.value.toString('utf8');
-      msg = JSON.parse(msg);
-      console.log(msg)
+      //var msg = message.value.toString('utf8');
+      msg = JSON.parse(message.value);
+      console.log(msg.DateTime._seconds)
       //notify that new add has been read and added to the db
       if(msg.EOF !== undefined){
         console.log("attempting to publish");
@@ -23,14 +23,14 @@ const run = async () => {
       }
         
         data = {
-          "DateTime" : new Date(msg.DateTime),
+          "DateTime" :  new Date(msg.DateTime._seconds * 1000 + msg.DateTime._nanoseconds/1000000),
           "ResolutionCode" : msg.ResolutionCode,
           "MapCode" : msg.MapCode,
           "TotalLoadValue" : msg.TotalLoadValue,
           "UpdateTime" : msg.UpdateTime
       }
       //console.log(data.DateTime);
-      await intermediate_ATL.doc(msg.DateTime.concat('-',msg.MapCode)).set(data);
+      await intermediate_ATL.doc( (new Date(msg.DateTime._seconds * 1000 + msg.DateTime._nanoseconds/1000000)).toString().concat('-',msg.MapCode)).set(data);
     }
   })
 }
