@@ -12,23 +12,26 @@ class Data extends Component {
         email: "johndoe@gmail.com",
         cty: "?",
         ctyTo: "??",
-        ctyList:["Greece","Portugal", "Ireland", "Malta","Cyprus", "Belgium","Luxembourg","Italy","Austria","Austria","Slovakia","Czech Republic","Moldova","Ukraine","Belarus",
+        ctyList:["Greece","Portugal", "Ireland", "Malta","Cyprus", "Belgium","Luxembourg","Italy","Austria","Slovakia","Czech Republic","Moldova","Ukraine","Belarus",
 		"Latvia","Albania","Bosnia and Herzegovina","Bulgaria","Croatia","Hungary","Montenegro","Romania","Serbia","Slovenia","North Macedonia","Lithuania","Russia",
 		"Estonia","Denmark","Finland","Germany","Netherlands","VVLAND","Poland","Sweden","Turkey","United Kingdom","France","Spain","Switzerland"],
 		dateFrom: '01/01/2010'
         //TODO: notify Chart to show noChart: noChart={this.state.cty === this.state.ctyTo}
     }
+	
     componentDidMount() {
 		
         const newState = {...this.state}
 		
-        const ctyListFetched = ["Greece","Portugal", "Ireland", "Malta","Cyprus", "Belgium","Luxembourg","Italy","Austria","Austria","Slovakia","Czech Republic","Moldova","Ukraine","Belarus",
+        const ctyListFetched = ["Greece","Portugal", "Ireland", "Malta","Cyprus", "Belgium","Luxembourg","Italy","Austria","Slovakia","Czech Republic","Moldova","Ukraine","Belarus",
 		"Latvia","Albania","Bosnia and Herzegovina","Bulgaria","Croatia","Hungary","Montenegro","Romania","Serbia","Slovenia","North Macedonia","Lithuania","Russia",
 		"Estonia","Denmark","Finland","Germany","Netherlands","VVLAND","Poland","Sweden","Turkey","United Kingdom","France","Spain","Switzerland"]
         newState.ctyList = ctyListFetched;
         this.setState(newState);
 	
 	}
+	
+	
 	//WIP - remove duplicate code and add into function
     handleQuantityChange = (obj) => {
 		
@@ -41,11 +44,11 @@ class Data extends Component {
 			headers: { 'Quantity': newState.dd_shown_id,
 			            'CountryFrom': newState.cty,
 						'CountryTo': newState.ctyTo,
-						'DateFrom':  newState.dateFrom},
+						'DateFrom':  newState.dateFrom.replace(/-/g,"/")},
 			
 			};
-			fetch('https://reqres.in/api/posts', requestOptions)
-				.then(response => response.json())
+			fetch('http://localhost:8080/ATL', requestOptions)
+				.then(response => {response.json();console.log(requestOptions)})
 				.then(data => {this.setState({ postId: data.id });console.log(requestOptions)});
     }
     handleCtyChange = (obj) => {
@@ -57,12 +60,12 @@ class Data extends Component {
 			headers: { 'Quantity': newState.dd_shown_id,
 			            'CountryFrom': newState.cty,
 						'CountryTo': newState.ctyTo,
-						'DateFrom':  newState.dateFrom},
+						'DateFrom':  newState.dateFrom.replace(/-/g,"/")},
 			
 			};
-			fetch('https://reqres.in/api/posts', requestOptions)
+			fetch('http://localhost:8080/ATL', requestOptions)
 				.then(response => response.json())
-				.then(data => {this.setState({ postId: data.id });console.log(requestOptions)});
+				.then(data => {this.setState({ postId: data });console.log(data)});
     }
     handleCtyToChange = (obj) => {
         const newState = {...this.state}
@@ -73,10 +76,10 @@ class Data extends Component {
 			headers: { 'Quantity': newState.dd_shown_id,
 			            'CountryFrom': newState.cty,
 						'CountryTo': newState.ctyTo,
-						'DateFrom':  newState.dateFrom},
+						'DateFrom':  newState.dateFrom.replace(/-/g,"/")},
 			
 			};
-			fetch('https://reqres.in/api/posts', requestOptions)
+			fetch('http://localhost:8080/ATL', requestOptions)
 				.then(response => response.json())
 				.then(data => {this.setState({ postId: data.id });console.log(requestOptions)});
     }
@@ -90,10 +93,10 @@ class Data extends Component {
 			headers: { 'Quantity': newState.dd_shown_id,
 			            'CountryFrom': newState.cty,
 						'CountryTo': newState.ctyTo,
-						'DateFrom':  newState.dateFrom},
+						'DateFrom':  newState.dateFrom.replace(/-/g,"/")},
 			
 			};
-			fetch('https://reqres.in/api/posts', requestOptions)
+			fetch('http://localhost:8080/ATL', requestOptions)
 				.then(response => response.json())
 				.then(data => {this.setState({ postId: data.id });console.log(requestOptions)});
 		
