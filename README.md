@@ -13,10 +13,10 @@ _You have to open 6 terminals_
 _python3 publisher_deamon.py --dataset [fft/agpt/atl] --topic [fft/agpt/atl]-csv --start-date 2022-1-1 --end-date 2022-2-2 --sec X
 where X is user defined 
 --- recommended time: 10 minutes to resemble functionality of entsoe service but in order to quickly spot data updates/fixes 40-50 secs will suffice
-*In the other 3 terminals
-**Cd to microservice05-ATL then `npm install` and then `npm run dev` --- Topics from kafka being read and data being inserted into database
-**Cd to microservice09-AGPT and follow the above mentioned steps
-**Cd to microservice10-FFT same here
+* In the other 3 terminals
+    * Cd to microservice05-ATL then `npm install` and then `npm run dev` --- Topics from kafka being read and data being inserted into database
+    * Cd to microservice09-AGPT and follow the above mentioned steps
+    * Cd to microservice10-FFT same here
 
 Now the `consumer.js` scripts are the ones that consume data from Kafk topics and place them into the appropriate database whose configuration can be seen under /firebase/firebase-config.js
 We have opted for 3 different Firebase projects, each with its own Firestore Database so as to better manage the data and the queries applied to them
