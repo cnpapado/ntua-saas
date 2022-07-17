@@ -5,15 +5,26 @@ require("highcharts/modules/exporting")(Highcharts);    //<-- Top-right hamburge
 require("highcharts/modules/export-data")(Highcharts);  //<-- Download as CSV from hamburger menu
 
 class Chart extends Component {
-    componentDidMount() {
+    componentDidUpdate() {
+        let data = this.props.data;
+        if(data[0].hasOwnProperty('Error')) {  //=> no data for this country
+            data = []
+        }
+
         Highcharts.chart('container',  {
+            title: {
+                text: ''    //<--- Inserting title will move the diagram down
+            },
             xAxis: {
-                categories: ['cat1', 'cat2', 'cat3']
+                categories: data.map( (e) => {
+                    return new Date(e['DateTime']._seconds * 1000).toISOString().substr(11, 8);
+                    //https://stackoverflow.com/questions/1322732/convert-seconds-to-hh-mm-ss-with-javascript
+                })
             },
             series: [
                 {
-                    name: 'John',
-                    data: [1, 2, 3]
+                    name: this.props.cty,
+                    data: data.map( (e) => { return parseInt(e['TotalLoadValue']) })
                 }
             ]
         })
