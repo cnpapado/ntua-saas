@@ -12,5 +12,6 @@ const db = admin.firestore();
 // TODO: Replace the following with your app's Firebase project configuration
 //config is found under tab ProjectSettings once you've opened the project
 const totalload = db.collection('ActualTotalLoad')
+//const fft       = db.collection('PhysicalFlows')
 
-module.exports = totalload;
+module.exports = db;
