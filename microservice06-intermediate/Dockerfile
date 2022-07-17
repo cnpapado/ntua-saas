@@ -13,4 +13,4 @@ RUN npm i
 # add app
 COPY . ./
 # start app
-CMD ["npm", "start"]
+CMD ["node", "server.js"]
