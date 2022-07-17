@@ -48,7 +48,7 @@ class Data extends Component {
 		.then(data => {
 			console.log('launchTimer', data);
 		})
-		.catch(error => console.log(error)), 15*60*1000);
+		.catch(error => console.log(error)), 20*1000);
 	};
 	
 	//WIP - remove duplicate code and add into function
@@ -64,7 +64,7 @@ class Data extends Component {
 						'CountryTo': newState.ctyTo,
 						'DateFrom':  newState.dateFrom.replace(/-/g,"/")}
 			};
-		fetch('http://localhost:8080', requestOptions)
+		fetch('https://microservice06-intermediate-vslormdula-ey.a.run.app', requestOptions)
 			.then(response => response.json())
 			.then(data => {
 				console.log('handleQuantityChange:', data);
