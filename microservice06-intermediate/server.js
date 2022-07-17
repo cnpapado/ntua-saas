@@ -14,7 +14,7 @@ app.use(cors({
 
 //route for Actual Total Load request
 app.route('/').get(async (req,res)=>{
-        if(req.header("Quantity") === "1") {
+        if(req.header("Quantity").toString() === "1") {
             DateTime = new Date(req.header("DateFrom").toString())
             MapCode  = countries[req.header("CountryFrom")];
             ret=[]
@@ -147,6 +147,8 @@ app.route('/AGPT').get(async (req,res)=>{
 });
 */
 
-app.listen(PORT, function() {
+var server = app.listen(PORT, function() {
     console.log('Server is running on PORT:',PORT);
 });
+
+server.setTimeout = 500000;
