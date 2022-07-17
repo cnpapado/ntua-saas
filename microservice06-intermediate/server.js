@@ -11,7 +11,7 @@ app.use(cors({
 
 app.route('/ATL').get((req,res)=>{
         DateTime = new Date(req.header("DateFrom").toString())
-        MapCode  = countries[req.header("Country")];
+        MapCode  = countries[req.header("CountryFrom")];
         var find = totalload.where("MapCode","==", MapCode).where("DateTime",">=",DateTime);
         ret=[]
         find.get().then(async function(querySnapshot) {
