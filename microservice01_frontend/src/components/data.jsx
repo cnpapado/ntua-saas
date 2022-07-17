@@ -12,17 +12,19 @@ class Data extends Component {
         email: "johndoe@gmail.com",
         cty: "?",
         ctyTo: "??",
-        ctyList: ["Albania", "Bosnia and Herzegovina", "Bulgaria","Cyprus", "Denmark","Ireland","Estonia","Austria","Czech Republic","Finland","France","Germany","Greece","Croatia","Hungary","Turkey","Italy","Latvia","Belarus","Lithuania","Slovakia","Liechtenstein","The former Yugoslav Republic of Macedonia","Malta","Belgium","Faroe Islands","Andorra","Luxembourg","Monaco","Montenegro","Netherlands","Norway","Poland","Portugal","Romania","Republic of Moldova","Slovenia","Spain","Sweden","Switzerland","United Kingdom","Ukraine","San Marino","Serbia","Holy See (Vatican City)"],
+        ctyList:["Greece","Portugal", "Ireland", "Malta","Cyprus", "Belgium","Luxembourg","Italy","Austria","Austria","Slovakia","Czech Republic","Moldova","Ukraine","Belarus",
+		"Latvia","Albania","Bosnia and Herzegovina","Bulgaria","Croatia","Hungary","Montenegro","Romania","Serbia","Slovenia","North Macedonia","Lithuania","Russia",
+		"Estonia","Denmark","Finland","Germany","Netherlands","VVLAND","Poland","Sweden","Turkey","United Kingdom","France","Spain","Switzerland"],
 		dateFrom: '01/01/2010'
         //TODO: notify Chart to show noChart: noChart={this.state.cty === this.state.ctyTo}
     }
     componentDidMount() {
 		
         const newState = {...this.state}
-        const ctyListFetched = ["Albania", "Bosnia and Herzegovina", "Bulgaria","Cyprus", "Denmark","Ireland","Estonia","Austria","Czech Republic","Finland","France","Germany","Greece","Croatia",
-		"Hungary","Turkey","Italy","Latvia","Belarus","Lithuania","Slovakia","Liechtenstein","The former Yugoslav Republic of Macedonia","Malta","Belgium","Faroe Islands","Andorra",
-		"Luxembourg","Monaco","Montenegro","Netherlands","Norway","Poland","Portugal","Romania","Republic of Moldova","Slovenia","Spain","Sweden","Switzerland","United Kingdom",
-		"Ukraine","San Marino","Serbia","Holy See (Vatican City)"]
+		
+        const ctyListFetched = ["Greece","Portugal", "Ireland", "Malta","Cyprus", "Belgium","Luxembourg","Italy","Austria","Austria","Slovakia","Czech Republic","Moldova","Ukraine","Belarus",
+		"Latvia","Albania","Bosnia and Herzegovina","Bulgaria","Croatia","Hungary","Montenegro","Romania","Serbia","Slovenia","North Macedonia","Lithuania","Russia",
+		"Estonia","Denmark","Finland","Germany","Netherlands","VVLAND","Poland","Sweden","Turkey","United Kingdom","France","Spain","Switzerland"]
         newState.ctyList = ctyListFetched;
         this.setState(newState);
 	
