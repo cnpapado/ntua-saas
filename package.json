@@ -1,0 +1,31 @@
+{
+  "name": "saas_2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon consumer.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "child-process": "^1.0.2",
+    "csv-parse": "^5.2.2",
+    "csvtojson": "^2.0.10",
+    "detect-file-encoding-and-language": "^2.1.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "fast-csv": "^4.3.6",
+    "firebase": "^9.9.0",
+    "firebase-admin": "^11.0.0",
+    "fs": "^0.0.1-security",
+    "iconv-lite": "^0.6.3",
+    "kafkajs": "^2.1.0",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
