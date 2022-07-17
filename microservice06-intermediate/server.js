@@ -1,31 +1,28 @@
-const express = require('express');
-const app = express();
-const cors = require('cors');
-var validateDate = require("validate-date");
-const totalload        = require('./firebase/firebase-config');
-
-
-const PORT = 8080;
+const express    = require('express');
+const app        = express();
+const cors       = require('cors');
+const totalload  = require('./firebase/firebase-config');
+const countries  = require('./countries.js')
+const PORT = 8080
 
 app.use(cors({
     origin: '*'
 }));
 
 app.route('/ATL').get((req,res)=>{
-        console.log(req.query.date,req.query.country)
-        DateTime = new Date(req.query.date).getTime()/1000;
-        MapCode  = req.query.country;
-        console.log(DateTime)
-        //var find = totalload.where("MapCode","==", MapCode);
-        var find = totalload.where("DateTime",">=",DateTime);
+        DateTime = new Date(req.header("DateFrom").toString())
+        MapCode  = countries[req.header("Country")];
+        var find = totalload.where("MapCode","==", MapCode).where("DateTime",">=",DateTime);
+        ret=[]
         find.get().then(async function(querySnapshot) {
             if(querySnapshot.empty){
             }
             else {
               querySnapshot.forEach(async function(doc) {
-                console.log(doc.data())
+                ret.push(doc.data())
                 })
             }
+            res.send(ret);
             })
 
     
