@@ -1,13 +1,12 @@
 const express    = require('express');
 const app        = express();
 const cors       = require('cors');
-const db         = require('./firebase/firebase-config')
+const {db_agpt, db_atl}  = require('./firebase/firebase-config')
 const countries  = require('./countries.js')
 const PORT       = 8080
-
-const totalload  = db.collection('ActualTotalLoad')
-const fft        = db.collection('PhysicalFlows')
-const agpt       = db.collection('GenerationPerType')
+const totalload  = db_atl.collection('ActualTotalLoad')
+//const fft        = db.collection('PhysicalFlows')
+const agpt       = db_agpt.collection('GenerationPerType')
 
 app.use(cors({
     origin: '*'
