@@ -17,19 +17,26 @@ app.use(cors({
 app.route('/ATL').get(async (req,res)=>{
         DateTime = new Date(req.header("DateFrom").toString())
         MapCode  = countries[req.header("CountryFrom")];
-        var find = totalload.where("MapCode","==", MapCode).where("DateTime",">=",DateTime);
         ret=[]
-        find.get().then(async function(querySnapshot) {
-            if(querySnapshot.empty){
-                ret.push({"Error":"No data available"})
-            }
-            else {
-              querySnapshot.forEach(async function(doc) {
-                ret.push(doc.data())
+        if(DateTime === undefined || MapCode === undefined){
+            ret.push({"Error":"Undefined value"})
+            console.log(DateTime,MapCode)
+            res.send(ret)
+        }
+        else {
+            var find = totalload.where("MapCode","==", MapCode).where("DateTime",">=",DateTime);
+            find.get().then(async function(querySnapshot) {
+                if(querySnapshot.empty){
+                    ret.push({"Error":"No data available"})
+                }
+                else {
+                querySnapshot.forEach(async function(doc) {
+                    ret.push(doc.data())
+                    })
+                }
+                res.send(ret);
                 })
-            }
-            res.send(ret);
-            })    
+        }    
 });
 
 //route for Physical Flows request
@@ -37,38 +44,53 @@ app.route('/FFT').get((req,res)=>{
     DateTime = new Date(req.header("DateFrom").toString())
     InMapCode  = countries[req.header("CountryFrom")];
     OutMapCode = countries[req.header("CountryTo")];
-    var find = fft.where("InMapCode","==", InMapCode).where("OutMapCode","==", OutMapCode).where("DateTime",">=",DateTime);
     ret=[]
-    find.get().then(async function(querySnapshot) {
-        if(querySnapshot.empty){
-            ret.push({"Error":"No data available"});
-        }
-        else {
-          querySnapshot.forEach(async function(doc) {
-            ret.push(doc.data())
+    if(DateTime === undefined || InMapCode === undefined || OutMapCode === undefined){
+        ret.push({"Error":"Undefined value"})
+        console.log(DateTime,InMapCode,OutMapCode);
+        res.send(ret)
+    }
+    else {
+        var find = fft.where("InMapCode","==", InMapCode).where("OutMapCode","==", OutMapCode).where("DateTime",">=",DateTime);
+        
+        find.get().then(async function(querySnapshot) {
+            if(querySnapshot.empty){
+                ret.push({"Error":"No data available"});
+            }
+            else {
+            querySnapshot.forEach(async function(doc) {
+                ret.push(doc.data())
+                })
+            }
+            res.send(ret);
             })
-        }
-        res.send(ret);
-        })
+    }
 });
 
 app.route('/AGPT').get(async (req,res)=>{
     DateTime          = new Date(req.header("DateFrom").toString())
     MapCode           = countries[req.header("CountryFrom")];
     ProductionType    = req.header("ProductionType");
-    var find          = agpt.where("ProductionType","==",ProductionType).where("MapCode","==", MapCode).where("DateTime",">=",DateTime);
-    ret = [];
-    find.get().then(async function(querySnapshot) {
-        if(querySnapshot.empty){
-            ret.push({"Error":"No data available"});
-        }
-        else {
-          querySnapshot.forEach(async function(doc) {
-            ret.push(doc.data())
-            })
-        }
+    ret=[]
+    if(DateTime === undefined || MapCode === undefined || ProductionType === undefined){
+        ret.push({"Error":"Undefined value"});
+        console.log(DateTime,MapCode,ProductionType);
         res.send(ret);
-        })    
+    }
+    else {
+        var find = agpt.where("ProductionType","==",ProductionType).where("MapCode","==", MapCode).where("DateTime",">=",DateTime);
+        find.get().then(async function(querySnapshot) {
+            if(querySnapshot.empty){
+                ret.push({"Error":"No data available"});
+            }
+            else {
+            querySnapshot.forEach(async function(doc) {
+                ret.push(doc.data())
+                })
+            }
+            res.send(ret);
+            })  
+    } 
 });
 
 app.listen(PORT, function() {
