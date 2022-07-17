@@ -2,6 +2,8 @@ var admin = require("firebase-admin");
 
 var serviceAccount    = require("../new-key.json");
 var serviceAccountATL = require("../atl-key.json");
+var serviceAccountFFT = require("../fft-key.json");
+
 
 
 var agpt = admin.initializeApp({
@@ -13,7 +15,7 @@ var atl = admin.initializeApp({
 },'atl');
 
 var fft = admin.initializeApp({
-  credential: admin.credential.cert(serviceAccountATL)
+  credential: admin.credential.cert(serviceAccountFFT)
 },'fft');
 
 const db_agpt = admin.firestore(agpt);
