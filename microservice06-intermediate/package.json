@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon intermediate-consumer.js",
-	"start": "node intermediate-consumer.js"
+    "start": "node intermediate-consumer.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.0",
     "child-process": "^1.0.2",
+    "cors": "^2.8.5",
     "csv-parse": "^5.2.2",
     "csvtojson": "^2.0.10",
     "detect-file-encoding-and-language": "^2.1.0",
@@ -24,7 +25,8 @@
     "iconv-lite": "^0.6.3",
     "kafkajs": "^2.1.0",
     "mysql": "^2.18.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "validate-date": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
