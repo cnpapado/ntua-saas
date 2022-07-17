@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Highcharts from "highcharts";
 import Footer from "./footer";
+require("highcharts/modules/exporting")(Highcharts);    //<-- Top-right hamburger menu
+require("highcharts/modules/export-data")(Highcharts);  //<-- Download as CSV from hamburger menu
 
 class Chart extends Component {
     componentDidMount() {
@@ -32,9 +34,12 @@ class Chart extends Component {
             )
     }
 
+    notifyUserToUseChartMenu() {
+        alert('Press the button on top right of the chart for this functionality.')
+    }
+
     render() {
         const topLeftMsg = ["ZERO_INDEX", "Actual total load", "Generation per type", "Cross border flows"]
-
 
         return (
             <div>
@@ -53,10 +58,10 @@ class Chart extends Component {
                 <br/>
 
                 <div className="text-end">
-                    <button className="me-3 btn btn-primary" type="button">
+                    <button className="me-3 btn btn-primary" type="button" onClick={this.notifyUserToUseChartMenu}>
                         Download image
                     </button>
-                    <button className="btn btn-primary" type="button">
+                    <button className="btn btn-primary" type="button" onClick={this.notifyUserToUseChartMenu}>
                         Download data
                     </button>
                 </div>
@@ -66,6 +71,7 @@ class Chart extends Component {
             </div>
         );
     }
+
 }
 
 export default Chart;
