@@ -78,7 +78,7 @@ app.route('/AGPT').get(async (req,res)=>{
         res.send(ret);
     }
     else {
-        var find = agpt.where("ProductionType","==",ProductionType).where("MapCode","==", MapCode).where("DateTime",">=",DateTime);
+        var find = agpt.where("MapCode","==", MapCode).where("ProductionType","==",ProductionType).where("DateTime",">=",DateTime);
         find.get().then(async function(querySnapshot) {
             if(querySnapshot.empty){
                 ret.push({"Error":"No data available"});
