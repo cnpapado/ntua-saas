@@ -8,5 +8,5 @@ The microservice includes:
 * Interactive Map
 * Extend plan option
 
-The service is currently deployed on Google Cloud Run: https://microservice01frontend-5dhg4gvi6a-ey.a.run.app/data
+The service is currently deployed on Google Cloud Run: https://microservice01frontend-5dhg4gvi6a-ey.a.run.app
 
