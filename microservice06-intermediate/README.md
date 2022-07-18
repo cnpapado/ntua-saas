@@ -4,5 +4,6 @@
 
 * `server.js` : receives requests and returns the requested data
 
-Currently deployed on Google Cloud Run: https://microservice06-intermediate-vslormdula-ey.a.run.app
+> **Note**
+> Currently deployed on Google Cloud Run: https://microservice06-intermediate-vslormdula-ey.a.run.app
 
