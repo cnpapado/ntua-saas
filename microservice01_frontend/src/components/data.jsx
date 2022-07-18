@@ -49,9 +49,10 @@ class Data extends Component {
 		console.log(newState);
 		this.timer = setInterval(() => (axios.get('https://microservice06-intermediate-vslormdula-ey.a.run.app',{
 													 headers: { 'Quantity': newState.dd_shown_id,
+																'ProductionType': newState.genType,
 																'CountryFrom': newState.cty,
 																'CountryTo': newState.ctyTo,
-																'DateFrom':  newState.dateFrom.replace(/-/g,"/")}
+																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:100000
 													}))
 		.then(data => {const newState = {...this.state}
 						newState.data = data.data;
@@ -65,97 +66,76 @@ class Data extends Component {
         newState.dd_shown_id = parseInt(obj.target.value);
         this.setState(newState);	//<---
 
-		const requestOptions = {
-			method: 'GET',
-			headers: { 'Quantity': newState.dd_shown_id,
-						'ProductionType': newState.genType,
-			            'CountryFrom': newState.cty,
-						'CountryTo': newState.ctyTo,
-						'DateFrom':  newState.dateFrom.replace(/-/g,"/")}
-			};
-		fetch('https://microservice06-intermediate-vslormdula-ey.a.run.app', requestOptions)
-			.then(response => response.json())
-			.then(data => {
-				const newState = {...this.state}
-				newState.data = data;
-				this.setState(newState);
-				console.log('handleQuantityChange:', data);
-				this.timer = this.stopTimer();
-				this.timer = this.launchTimer()
-			});
+		axios.get('https://microservice06-intermediate-vslormdula-ey.a.run.app',{
+													 headers: { 'Quantity': newState.dd_shown_id,
+																'ProductionType': newState.genType,
+																'CountryFrom': newState.cty,
+																'CountryTo': newState.ctyTo,
+																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:100000
+													})
+		.then(data => {const newState = {...this.state};
+						newState.data = data.data;
+						this.setState(newState);console.log(data.data);
+						this.timer = this.stopTimer();
+						this.timer = this.launchTimer();})
+		.catch(error => console.log(error));
     }
     handleCtyChange = (obj) => {
         const newState = {...this.state}
         newState.cty = obj.target.value;
         this.setState(newState);
 
-		const requestOptions = {
-			method: 'GET',
-			headers: { 'Quantity': newState.dd_shown_id,
-						'ProductionType': newState.genType,
-			            'CountryFrom': newState.cty,
-						'CountryTo': newState.ctyTo,
-						'DateFrom':  newState.dateFrom.replace(/-/g,"/")}
-			};
-		fetch('https://microservice06-intermediate-vslormdula-ey.a.run.app', requestOptions)
-			.then(response => response.json())
-			.then(data => {
-				const newState = {...this.state}
-				newState.data = data;
-				this.setState(newState);
-
-				console.log('handleCtyChange', data);
-				this.timer = this.stopTimer();
-				this.timer = this.launchTimer()
-			});
+		axios.get('https://microservice06-intermediate-vslormdula-ey.a.run.app',{
+													 headers: { 'Quantity': newState.dd_shown_id,
+																'ProductionType': newState.genType,
+																'CountryFrom': newState.cty,
+																'CountryTo': newState.ctyTo,
+																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:100000
+													})
+		.then(data => {const newState = {...this.state};
+						newState.data = data.data;
+						this.setState(newState);console.log(data.data);
+						this.timer = this.stopTimer();
+						this.timer = this.launchTimer();})
+		.catch(error => console.log(error));
     }
     handleCtyToChange = (obj) => {
         const newState = {...this.state}
         newState.ctyTo = obj.target.value;
         this.setState(newState);
 
-		const requestOptions = {
-			method: 'GET',
-			headers: { 'Quantity': newState.dd_shown_id,
-			            'ProductionType': newState.genType,
-						'CountryFrom': newState.cty,
-						'CountryTo': newState.ctyTo,
-						'DateFrom':  newState.dateFrom.replace(/-/g,"/")}
-			};
-		fetch('https://microservice06-intermediate-vslormdula-ey.a.run.app', requestOptions)
-			.then(response => response.json())
-			.then(data => {
-				const newState = {...this.state}
-				newState.data = data;
-				this.setState(newState);
-				console.log('handleCtyToChange', data);
-				this.timer = this.stopTimer();
-				this.timer = this.launchTimer()
-			});
+		axios.get('https://microservice06-intermediate-vslormdula-ey.a.run.app',{
+													 headers: { 'Quantity': newState.dd_shown_id,
+																'ProductionType': newState.genType,
+																'CountryFrom': newState.cty,
+																'CountryTo': newState.ctyTo,
+																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:100000
+													})
+		.then(data => {const newState = {...this.state};
+						newState.data = data.data;
+						this.setState(newState);console.log(data.data);
+						this.timer = this.stopTimer();
+						this.timer = this.launchTimer();})
+		.catch(error => console.log(error));
     }
 	handleGenChange = (obj) => {
         const newState = {...this.state}
         newState.genType = obj.target.value;
         this.setState(newState);	//<---
 
-		const requestOptions = {
-			method: 'GET',
-			headers: { 'Quantity': newState.dd_shown_id,
-						'ProductionType': newState.genType,
-			            'CountryFrom': newState.cty,
-						'CountryTo': newState.ctyTo,
-						'DateFrom':  newState.dateFrom.replace(/-/g,"/")}
-			};
-		fetch('https://microservice06-intermediate-vslormdula-ey.a.run.app', requestOptions)
-			.then(response => response.json())
-			.then(data => {
-				const newState = {...this.state}
-				newState.data = data;
-				this.setState(newState);
-				console.log('handleGenChange:', data);
-				this.timer = this.stopTimer();
-				this.timer = this.launchTimer()
-			});
+		axios.get('https://microservice06-intermediate-vslormdula-ey.a.run.app',{
+													 headers: { 'Quantity': newState.dd_shown_id,
+																'ProductionType': newState.genType,
+																'CountryFrom': newState.cty,
+																'CountryTo': newState.ctyTo,
+																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:100000
+													})
+		.then(data => {const newState = {...this.state};
+						newState.data = data.data;
+						this.setState(newState);console.log(data.data);
+						this.timer = this.stopTimer();
+						this.timer = this.launchTimer();})
+		.catch(error => console.log(error));
     }
 	handleClick = (obj) =>{
 		console.log(obj.target.value);
@@ -163,23 +143,19 @@ class Data extends Component {
         newState.dateFrom = obj.target.value;
         this.setState(newState);
 
-		const requestOptions = {
-			method: 'GET',
-			headers: { 'Quantity': newState.dd_shown_id,
-			            'CountryFrom': newState.cty,
-						'CountryTo': newState.ctyTo,
-						'DateFrom':  newState.dateFrom.replace(/-/g,"/")}
-			};
-		fetch('https://microservice06-intermediate-vslormdula-ey.a.run.app', requestOptions)
-			.then(response => response.json())
-			.then(data => {
-				const newState = {...this.state}
-				newState.data = data;
-				this.setState(newState);
-				console.log('handleClick', requestOptions);
-				this.timer = this.stopTimer();
-				this.timer = this.launchTimer()
-			});
+		axios.get('https://microservice06-intermediate-vslormdula-ey.a.run.app',{
+													 headers: { 'Quantity': newState.dd_shown_id,
+																'ProductionType': newState.genType,
+																'CountryFrom': newState.cty,
+																'CountryTo': newState.ctyTo,
+																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:100000
+													})
+		.then(data => {const newState = {...this.state};
+						newState.data = data.data;
+						this.setState(newState);console.log(data.data);
+						this.timer = this.stopTimer();
+						this.timer = this.launchTimer();})
+		.catch(error => console.log(error));
 	}
 
     render() {
