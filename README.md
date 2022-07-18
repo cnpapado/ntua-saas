@@ -62,7 +62,9 @@ Send GET requests to: https://microservice06-intermediate-vslormdula-ey.a.run.ap
     ├── microserviceXX                   # Microservices used for development-debugging
     └── README.md
 
-
+### jMeter stress testing on server deployed on Cloud Run
+(Specs: 1 CPU, 500MB memory)
+![image](https://user-images.githubusercontent.com/49884434/179575851-fe697617-b0aa-4882-b83b-e4cca290b6ce.png)
 
 ## Team Members
 Evangelia Grizaniti<br>
