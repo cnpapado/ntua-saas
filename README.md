@@ -58,16 +58,13 @@ Send GET requests to: https://microservice06-intermediate-vslormdula-ey.a.run.ap
 
 
 ## Team Members
-Evangelia Grizaniti
-Christos Nikolopoulos
-Konstantinos Nikolaos Papadopoulos
-Despoina Mousadi
-Elisavet Lydia Alvanaki
+Evangelia Grizaniti<br>
+Christos Nikolopoulos<br>
+Konstantinos Nikolaos Papadopoulos<br>
+Despoina Mousadi<br>
+Elisavet Lydia Alvanaki<br>
 
 
-
-
-[https://github.com/yourname/github-link](https://github.com/dbader/)
 
   
   
