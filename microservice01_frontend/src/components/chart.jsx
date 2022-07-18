@@ -7,7 +7,7 @@ require("highcharts/modules/export-data")(Highcharts);  //<-- Download as CSV fr
 class Chart extends Component {
     componentDidUpdate() {
         let data = this.props.data;
-		console.log("ok",data[0].hasOwnProperty('ActualGenerationOutput'));
+		console.log("ok",data);
         if(data[0].hasOwnProperty('Error')) {  //=> no data for this country
             data = []
 			Highcharts.chart('container',  {
@@ -123,7 +123,7 @@ class Chart extends Component {
                 <figure id="container"></figure>
 
                 <div className="mt-3">
-                    Latest update {this.props.data[this.props.data.length-1].UpdateTime} 
+                    Latest update {this?.props?.data[this.props.data.length-1]?.UpdateTime} 
                 </div>
                 <br/>
 

@@ -49,18 +49,14 @@ class Data extends Component {
 		console.log(newState);
 		this.timer = setInterval(() => (axios.get('https://microservice06-intermediate-vslormdula-ey.a.run.app',{
 													 headers: { 'Quantity': newState.dd_shown_id,
-																'ProductionType': newState.genType,
 																'CountryFrom': newState.cty,
 																'CountryTo': newState.ctyTo,
 																'DateFrom':  newState.dateFrom.replace(/-/g,"/")}
 													}))
-		.then(data => {
-			const newState = {...this.state}
-		    newState.data = data;
-			this.setState(newState);
-			console.log('launchTimer', data);
-		})
-		.catch(error => console.log(error)), 60*20*1000);
+		.then(data => {const newState = {...this.state}
+						newState.data = data.data;
+						this.setState(newState);console.log(data.data);})
+		.catch(error => console.log(error)), 15*60*1000);
 	};
 	
 	//WIP - remove duplicate code and add into function
