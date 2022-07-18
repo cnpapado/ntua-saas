@@ -123,7 +123,7 @@ class Chart extends Component {
                 <figure id="container"></figure>
 
                 <div className="mt-3">
-                    Latest update DD.MM.YYY HH:MM
+                    Latest update {this.props.data[this.props.data.length-1].UpdateTime} 
                 </div>
                 <br/>
 
