@@ -1,7 +1,7 @@
 # NTUA ECE SAAS 2022 PROJECT
   
 ## TEAM (56)
-  # Energy Live 2022
+  # Energy Live 2022 :part_alternation_mark: :zap:
 > Get visualized real-time energy stock exchange data.
 
 
@@ -18,11 +18,11 @@ npm install
 ```
 ## Run frontend locally 
 1) Clone the repo
-2)
+2) Change current folder to frontend
 ```
 cd microservice01_frontend
 ```
-3)
+3) Run
 ```
 npm start
 ```
@@ -31,11 +31,11 @@ https://microservice01frontend-5dhg4gvi6a-ey.a.run.app
 
 ## Run backend locally 
 1) Clone the repo
-2) 
+2) Change current folder to backend
 ```
 cd microservice06-intermediate
 ```
-3)
+3) Run 
 ```
 node server.js
 ```
@@ -45,7 +45,7 @@ Send GET requests to: https://microservice06-intermediate-vslormdula-ey.a.run.ap
 ## Usage example
 ![image](https://user-images.githubusercontent.com/49884434/179519926-501d564c-faaa-425b-9ec3-6ae440c40746.png)
 
-![image](https://user-images.githubusercontent.com/49884434/179520198-03b488c1-99d2-49d7-b2c9-051b7c601bb0.png)
+![image](https://user-images.githubusercontent.com/49884434/179599967-d7fd1122-243b-472e-8f81-6e7b8403c0ae.png)
 
 ![image](https://user-images.githubusercontent.com/49884434/179520398-1540c591-721e-4619-9aff-009ebf4de313.png)
 
@@ -57,8 +57,10 @@ Send GET requests to: https://microservice06-intermediate-vslormdula-ey.a.run.ap
     ├── architecture                     # UML diagrams of project architecture
     ├── microservice01_frontend          # Frontend microservice to display real-time charts 
     ├── microservice03-fftp              # Microservice to emulate ftp server, places data in kafka topics in set intervals 
-    ├── microservice04-db                # Firestore database configuration
-    ├── microservice06-intermediate      # Handler for automatic refresh requests
+    ├── microservice05-ATL               # Actual Total Load Firestore database configuration
+    ├── microservice09-AGPT              # Generation Per Type Firestore database configuration
+    ├── microservice10-FFT               # Cross Border Flows Firestore database configuration
+    ├── microservice06-intermediate      # Handler for refresh requests
     ├── microserviceXX                   # Microservices used for development-debugging
     └── README.md
 
@@ -76,7 +78,7 @@ Elisavet Lydia Alvanaki<br>
 
 
   
-  
+## Kafka & database setup  
 ***
 **how to fetch data from AWS bucket and store them in Firestore Databases(3 depending on the Dataset)**
 
