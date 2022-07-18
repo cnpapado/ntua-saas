@@ -13,9 +13,13 @@ class Data extends Component {
         email: "johndoe@gmail.com",
         cty: "?",
         ctyTo: "??",
+		genType:"",
         ctyList:["Albania","Austria","Belarus","Belgium","Bosnia Herzegovina","Bulgaria","Croatia","Cyprus","Czech Republic","Denmark","Estonia","Finland","France",
 				"Georgia","Germany","Greece","Hungary","Ireland","Italy","Latvia","Lithuania","Luxembourg","Malta","Montenegro","Netherlands","North Macedonia","Norway","Poland","Portugal",
 				"Republic of Moldova","Romania","Serbia","Slovakia","Slovenia","Spain","Sweden","Switzerland","Turkey","Ukraine","United Kingdom","Russia","Armenia","Azerbaijan","Kosovo"],
+		genList:["Biomass","Fossil Gas","Fossil Hard Coal","Fossil Oil","Geothermal",,"Other","Other renewable",
+				"Solar","Waste","Fossil Brown coal/Lignite","Hydro Pumped Storage","Hydro Run-of-river and poundage","Hydro Water Reservoir","Wind Onshore","Nuclear",
+				"Fossil Hard coal"],
 		dateFrom: '01/01/2010',
 		data: [{Error: "Initial value"}]	// FORMAT that server returns, when no data
         //TODO: notify Chart to show noChart: noChart={this.state.cty === this.state.ctyTo}
@@ -26,7 +30,11 @@ class Data extends Component {
         const ctyListFetched = ["Albania","Austria","Belarus","Belgium","Bosnia Herzegovina","Bulgaria","Croatia","Cyprus","Czech Republic","Denmark","Estonia","Finland","France",
 					"Georgia","Germany","Greece","Hungary","Ireland","Italy","Latvia","Lithuania","Luxembourg","Malta","Montenegro","Netherlands","North Macedonia","Norway","Poland","Portugal",
 					"Republic of Moldova","Romania","Serbia","Slovakia","Slovenia","Spain","Sweden","Switzerland","Turkey","Ukraine","United Kingdom","Russia","Armenia","Azerbaijan","Kosovo"];
-        newState.ctyList = ctyListFetched;
+        const genListFetched = ["Biomass","Fossil Gas","Fossil Hard Coal","Fossil Oil","Geothermal","Other","Other renewable",
+				"Solar","Waste","Fossil Brown coal/Lignite","Hydro Pumped Storage","Hydro Run-of-river and poundage","Hydro Water Reservoir","Wind Onshore","Nuclear",
+				"Fossil Hard coal"];
+		newState.ctyList = ctyListFetched;
+		newState.genList = genListFetched;
         this.setState(newState);
 	}
 	stopTimer = () => {
@@ -41,14 +49,18 @@ class Data extends Component {
 		console.log(newState);
 		this.timer = setInterval(() => (axios.get('https://microservice06-intermediate-vslormdula-ey.a.run.app',{
 													 headers: { 'Quantity': newState.dd_shown_id,
+																'ProductionType': newState.genType,
 																'CountryFrom': newState.cty,
 																'CountryTo': newState.ctyTo,
 																'DateFrom':  newState.dateFrom.replace(/-/g,"/")}
 													}))
 		.then(data => {
+			const newState = {...this.state}
+		    newState.data = data;
+			this.setState(newState);
 			console.log('launchTimer', data);
 		})
-		.catch(error => console.log(error)), 20*1000);
+		.catch(error => console.log(error)), 60*20*1000);
 	};
 	
 	//WIP - remove duplicate code and add into function
@@ -60,6 +72,7 @@ class Data extends Component {
 		const requestOptions = {
 			method: 'GET',
 			headers: { 'Quantity': newState.dd_shown_id,
+						'ProductionType': newState.genType,
 			            'CountryFrom': newState.cty,
 						'CountryTo': newState.ctyTo,
 						'DateFrom':  newState.dateFrom.replace(/-/g,"/")}
@@ -67,6 +80,9 @@ class Data extends Component {
 		fetch('https://microservice06-intermediate-vslormdula-ey.a.run.app', requestOptions)
 			.then(response => response.json())
 			.then(data => {
+				const newState = {...this.state}
+				newState.data = data;
+				this.setState(newState);
 				console.log('handleQuantityChange:', data);
 				this.timer = this.stopTimer();
 				this.timer = this.launchTimer()
@@ -80,6 +96,7 @@ class Data extends Component {
 		const requestOptions = {
 			method: 'GET',
 			headers: { 'Quantity': newState.dd_shown_id,
+						'ProductionType': newState.genType,
 			            'CountryFrom': newState.cty,
 						'CountryTo': newState.ctyTo,
 						'DateFrom':  newState.dateFrom.replace(/-/g,"/")}
@@ -104,6 +121,31 @@ class Data extends Component {
 		const requestOptions = {
 			method: 'GET',
 			headers: { 'Quantity': newState.dd_shown_id,
+			            'ProductionType': newState.genType,
+						'CountryFrom': newState.cty,
+						'CountryTo': newState.ctyTo,
+						'DateFrom':  newState.dateFrom.replace(/-/g,"/")}
+			};
+		fetch('https://microservice06-intermediate-vslormdula-ey.a.run.app', requestOptions)
+			.then(response => response.json())
+			.then(data => {
+				const newState = {...this.state}
+				newState.data = data;
+				this.setState(newState);
+				console.log('handleCtyToChange', data);
+				this.timer = this.stopTimer();
+				this.timer = this.launchTimer()
+			});
+    }
+	handleGenChange = (obj) => {
+        const newState = {...this.state}
+        newState.genType = obj.target.value;
+        this.setState(newState);	//<---
+
+		const requestOptions = {
+			method: 'GET',
+			headers: { 'Quantity': newState.dd_shown_id,
+						'ProductionType': newState.genType,
 			            'CountryFrom': newState.cty,
 						'CountryTo': newState.ctyTo,
 						'DateFrom':  newState.dateFrom.replace(/-/g,"/")}
@@ -111,7 +153,10 @@ class Data extends Component {
 		fetch('https://microservice06-intermediate-vslormdula-ey.a.run.app', requestOptions)
 			.then(response => response.json())
 			.then(data => {
-				console.log('handleCtyToChange', data);
+				const newState = {...this.state}
+				newState.data = data;
+				this.setState(newState);
+				console.log('handleGenChange:', data);
 				this.timer = this.stopTimer();
 				this.timer = this.launchTimer()
 			});
@@ -132,6 +177,9 @@ class Data extends Component {
 		fetch('https://microservice06-intermediate-vslormdula-ey.a.run.app', requestOptions)
 			.then(response => response.json())
 			.then(data => {
+				const newState = {...this.state}
+				newState.data = data;
+				this.setState(newState);
 				console.log('handleClick', requestOptions);
 				this.timer = this.stopTimer();
 				this.timer = this.launchTimer()
@@ -152,6 +200,8 @@ class Data extends Component {
 
                                 <Dropdowns ddShown={this.state.dd_shown_id}
                                            ctyList={this.state.ctyList}
+										   genList={this.state.genList}
+										   onGenChange={this.handleGenChange}
                                            onQuantityChange={this.handleQuantityChange}
                                            onCtyChange={this.handleCtyChange}
                                            onCtyToChange={this.handleCtyToChange} />
@@ -170,6 +220,7 @@ class Data extends Component {
                                    cty={this.state.cty}
                                    ctyTo={this.state.ctyTo}
 								   data={this.state.data}
+								   
 							/>
                         </div>
                     </div>
