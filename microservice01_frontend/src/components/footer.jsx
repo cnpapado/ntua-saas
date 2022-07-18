@@ -1,7 +1,8 @@
 import React from 'react';
 
 const Footer = props => {
-    if (props.welcome !== undefined)
+    console.log(window.localStorage.getItem('daysLeft'));
+	if (props.welcome !== undefined)
         return (
             <div>
                 <footer className="mt-5 modal-footer">
@@ -34,7 +35,7 @@ const Footer = props => {
                         </div>
                         <div className="col">
                             <div href="#" className="text-decoration-none">
-                                Days left: 27
+                                Days left: {isNaN(window.localStorage.getItem('daysLeft'))?0:window.localStorage.getItem('daysLeft')}
                             </div>
                         </div>
                         <div className="col">

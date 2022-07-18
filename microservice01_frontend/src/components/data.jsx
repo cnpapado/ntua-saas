@@ -36,6 +36,7 @@ class Data extends Component {
 		newState.ctyList = ctyListFetched;
 		newState.genList = genListFetched;
         this.setState(newState);
+		
 	}
 	stopTimer = () => {
 		console.log("stopTimer called");
@@ -52,7 +53,7 @@ class Data extends Component {
 																'ProductionType': newState.genType,
 																'CountryFrom': newState.cty,
 																'CountryTo': newState.ctyTo,
-																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:100000
+																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:5000000
 													}))
 		.then(data => {const newState = {...this.state}
 						newState.data = data.data;
@@ -71,7 +72,7 @@ class Data extends Component {
 																'ProductionType': newState.genType,
 																'CountryFrom': newState.cty,
 																'CountryTo': newState.ctyTo,
-																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:100000
+																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:5000000
 													})
 		.then(data => {const newState = {...this.state};
 						newState.data = data.data;
@@ -90,7 +91,7 @@ class Data extends Component {
 																'ProductionType': newState.genType,
 																'CountryFrom': newState.cty,
 																'CountryTo': newState.ctyTo,
-																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:100000
+																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:5000000
 													})
 		.then(data => {const newState = {...this.state};
 						newState.data = data.data;
@@ -109,7 +110,7 @@ class Data extends Component {
 																'ProductionType': newState.genType,
 																'CountryFrom': newState.cty,
 																'CountryTo': newState.ctyTo,
-																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:100000
+																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:5000000
 													})
 		.then(data => {const newState = {...this.state};
 						newState.data = data.data;
@@ -128,7 +129,7 @@ class Data extends Component {
 																'ProductionType': newState.genType,
 																'CountryFrom': newState.cty,
 																'CountryTo': newState.ctyTo,
-																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:100000
+																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:5000000
 													})
 		.then(data => {const newState = {...this.state};
 						newState.data = data.data;
@@ -148,7 +149,7 @@ class Data extends Component {
 																'ProductionType': newState.genType,
 																'CountryFrom': newState.cty,
 																'CountryTo': newState.ctyTo,
-																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:100000
+																'DateFrom':  newState.dateFrom.replace(/-/g,"/")},timeout:5000000
 													})
 		.then(data => {const newState = {...this.state};
 						newState.data = data.data;

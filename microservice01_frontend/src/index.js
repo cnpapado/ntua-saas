@@ -8,12 +8,13 @@ import NoPage from "./components/noPage";
 
 import Data from "./components/data";
 import Plan from "./components/plan";
-import Map from "./components/MyMap";
+//import Map from "./components/MyMap";
 import Protected from "./firebase/components/Protected"
 
 import { AuthContextProvider } from './context/AuthContext';
 
 import SignIn from './components/SignIn';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,7 +25,7 @@ root.render(
 			  <Route path="/" element={<SignIn />} />
               <Route path="data" element={<Protected><Data /></Protected>} />
               <Route path="plan" element={<Protected><Plan /></Protected>} />
-              <Route path="map" element={<Protected><Map /></Protected>} />
+              
               <Route path="*" element={<NoPage />} />
           </Routes>
       </BrowserRouter>

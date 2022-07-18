@@ -26,12 +26,7 @@ const Navbar = () => { // React passes props
 
                     <div className="justify-content-end align-center">
                         <ul className="navbar-nav">
-                            <li className="mx-5">
-                                <a href="/map">
-                                    Click me for map
-                                    <img src={map_app} width='50' height='50' alt="Click here for map!"/>
-                                </a>
-                            </li>
+                            
                             <li className="navbar-text pe-4 text-dark">
                                 {user?.email}
                             </li>

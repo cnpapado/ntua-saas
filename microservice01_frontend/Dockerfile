@@ -13,4 +13,4 @@ RUN npm i --save react react-dom react-scripts --force
 # add app
 COPY . ./
 # start app
-CMD ["npm", "start"]
+CMD ["npm", "--max-old-space-size=8192", "--build-optimizer","start"]
