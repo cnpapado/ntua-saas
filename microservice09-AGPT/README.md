@@ -1,6 +1,6 @@
-# MICROSERVICE
+# MICROSERVICE05 - Generation Per Type firestore database
 
-## (name)
+## Database config for firestore database containing Generation Per Type
 
-(description)
+Includes configuration files for firestore database connection
 
