@@ -9,6 +9,19 @@ EnergyLive 2022 helps you visualize real time data from the energy stock exchang
 
 ![](header.png)
 
+## Project structure
+
+    .
+    ├── architecture                     # UML diagrams of project architecture
+    ├── microservice01_frontend          # Frontend microservice to display real-time charts 
+    ├── microservice03-fftp              # Microservice to emulate ftp server, places data in kafka topics in set intervals 
+    ├── microservice05-ATL               # Actual Total Load Firestore database configuration
+    ├── microservice09-AGPT              # Generation Per Type Firestore database configuration
+    ├── microservice10-FFT               # Cross Border Flows Firestore database configuration
+    ├── microservice06-intermediate      # Handler for refresh requests
+    ├── microserviceXX-dev               # Sandbox microservices used for development-debugging
+    └── README.md
+
 ## Installation
 
 Windows:
