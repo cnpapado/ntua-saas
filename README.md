@@ -39,6 +39,15 @@ cd microservice01_frontend
 ```
 npm start
 ```
+<em>(Or run locally as a container using <br>
+```docker build . -t sample-app```
+```docker run -it -p 3000:3000 sample-app```)<br>
+> **Warning**
+> Don't forget to replace the working directory in the Dockerfile with your current working directory
+</em>
+
+
+
 ## Run frontend remotely
 https://microservice01frontend-5dhg4gvi6a-ey.a.run.app
 
@@ -52,6 +61,13 @@ cd microservice06-intermediate
 ```
 node server.js
 ```
+<em>(Or run locally as a container using <br>
+```docker build . -t sample-app```
+```docker run -it -p 3000:3000 sample-app```)<br>
+> **Warning**
+> Don't forget to replace the working directory in the Dockerfile with your current working directory
+</em>
+
 ## Run backend remotely
 Send GET requests to: https://microservice06-intermediate-vslormdula-ey.a.run.app
 
@@ -63,19 +79,6 @@ Send GET requests to: https://microservice06-intermediate-vslormdula-ey.a.run.ap
 ![image](https://user-images.githubusercontent.com/49884434/179520398-1540c591-721e-4619-9aff-009ebf4de313.png)
 
 ![image](https://user-images.githubusercontent.com/49884434/179520556-3d5797a2-cfd9-4927-91b0-61d24fc27e27.png)
-
-## Project structure
-
-    .
-    ├── architecture                     # UML diagrams of project architecture
-    ├── microservice01_frontend          # Frontend microservice to display real-time charts 
-    ├── microservice03-fftp              # Microservice to emulate ftp server, places data in kafka topics in set intervals 
-    ├── microservice05-ATL               # Actual Total Load Firestore database configuration
-    ├── microservice09-AGPT              # Generation Per Type Firestore database configuration
-    ├── microservice10-FFT               # Cross Border Flows Firestore database configuration
-    ├── microservice06-intermediate      # Handler for refresh requests
-    ├── microserviceXX                   # Microservices used for development-debugging
-    └── README.md
 
 ### jMeter stress testing on server deployed on Cloud Run
 (Specs: 1 CPU, 500MB memory)
