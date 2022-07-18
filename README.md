@@ -1,6 +1,75 @@
 # NTUA ECE SAAS 2022 PROJECT
   
 ## TEAM (56)
+  # Energy Live 2022
+> Get visualized real-time energy stock exchange data.
+
+
+EnergyLive 2022 help you visualize real time data from the energy stock exchange based on various criteria. 
+
+![](header.png)
+
+## Installation
+
+Windows:
+
+```
+npm install
+```
+## Run frontend locally 
+1) Clone the repo
+2)
+```
+cd microservice01_frontend
+```
+3)
+```
+npm start
+```
+## Run frontend remotely
+https://microservice01frontend-5dhg4gvi6a-ey.a.run.app
+
+## Run backend locally 
+1) Clone the repo
+2) 
+```
+cd microservice06-intermediate
+```
+3)
+```
+node server.js
+```
+## Run backend remotely
+Send GET requests to: https://microservice06-intermediate-vslormdula-ey.a.run.app
+
+## Usage example
+
+## Project structure
+
+    .
+    ├── architecture                     # UML diagrams of project architecture
+    ├── microservice01_frontend          # Frontend microservice to display real-time charts 
+    ├── microservice03-fftp              # Microservice to emulate ftp server, places data in kafka topics in set intervals 
+    ├── microservice04-db                # Firestore database configuration
+    ├── microservice06-intermediate      # Handler for automatic refresh requests
+    ├── microserviceXX                   # Microservices used for development-debugging
+    └── README.md
+
+
+
+## Team Members
+Evangelia Grizaniti
+Christos Nikolopoulos
+Konstantinos Nikolaos Papadopoulos
+Despoina Mousadi
+Elisavet Lydia Alvanaki
+
+
+
+
+[https://github.com/yourname/github-link](https://github.com/dbader/)
+
+  
   
 ***
 **how to fetch data from AWS bucket and store them in Firestore Databases(3 depending on the Dataset)**
