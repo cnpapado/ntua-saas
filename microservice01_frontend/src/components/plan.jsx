@@ -46,7 +46,7 @@ export default function Plan() {
 									<div className="row">
 										<label htmlFor="days_left" className="col-4 col-form-label text-end">Days left:</label>
 										<div className="col-2">
-											<input type="number" className="form-control" id="days_left" defaultValue="42" disabled/>
+											<input type="number" className="form-control" id="days_left" defaultValue={isNaN(window.localStorage.getItem('daysLeft'))?0:window.localStorage.getItem('daysLeft')} disabled/>
 										</div>
 
 										<label htmlFor="extend_by" className="col-4 col-form-label text-end">Extend by (days):</label>
