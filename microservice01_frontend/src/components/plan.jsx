@@ -60,7 +60,7 @@ export default function Plan() {
 					</div>
 
 					<div className="d-grid gap-5 d-flex justify-content-center">
-						<button type="submit" className="btn btn-primary" onClick={()=>{window.localStorage.setItem('daysLeft', parseInt(document.getElementById("extend_by").value))}}>Extend</button>
+						<button type="submit" className="btn btn-primary" onClick={()=>{window.localStorage.setItem('daysLeft', parseInt(document.getElementById("extend_by").value)+parseInt(isNaN(window.localStorage.getItem('daysLeft'))?0:window.localStorage.getItem('daysLeft')))}}>Extend</button>
 						<button type="reset" className="btn btn-primary" onClick={() => console.log("Cancel clicked")}>Cancel</button>
 					</div>
 				</form>
