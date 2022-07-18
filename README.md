@@ -5,7 +5,7 @@
 > Get visualized real-time energy stock exchange data.
 
 
-EnergyLive 2022 help you visualize real time data from the energy stock exchange based on various criteria. 
+EnergyLive 2022 helps you visualize real time data from the energy stock exchange based on various criteria. 
 
 ![](header.png)
 
@@ -43,6 +43,13 @@ node server.js
 Send GET requests to: https://microservice06-intermediate-vslormdula-ey.a.run.app
 
 ## Usage example
+![image](https://user-images.githubusercontent.com/49884434/179519926-501d564c-faaa-425b-9ec3-6ae440c40746.png)
+
+![image](https://user-images.githubusercontent.com/49884434/179520198-03b488c1-99d2-49d7-b2c9-051b7c601bb0.png)
+
+![image](https://user-images.githubusercontent.com/49884434/179520398-1540c591-721e-4619-9aff-009ebf4de313.png)
+
+![image](https://user-images.githubusercontent.com/49884434/179520556-3d5797a2-cfd9-4927-91b0-61d24fc27e27.png)
 
 ## Project structure
 
