@@ -8,5 +8,8 @@ The microservice includes:
 * Interactive Map
 * Extend plan option
 
-The service is currently deployed on Google Cloud Run: https://microservice01frontend-5dhg4gvi6a-ey.a.run.app
+Data is received and automatically updated every 15 minutes and upon any change in the dropdown/date selection.
+
+>**Note**
+>The service is currently deployed on Google Cloud Run: https://microservice01frontend-5dhg4gvi6a-ey.a.run.app
 
