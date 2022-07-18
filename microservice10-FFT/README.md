@@ -1,6 +1,5 @@
-# MICROSERVICE
+# MICROSERVICE05 - Cross Border Flows firestore database
 
-## (name)
+## Database config for firestore database containing Cross Border Flows Data
 
-(description)
-
+Includes configuration files for firestore database connection
