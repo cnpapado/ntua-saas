@@ -24,9 +24,12 @@ class Dropdowns extends Component {
             </div>
         )
         const dd_type = (
-            <div className="form-floating mt-3">
+            <div className="form-floating mt-3" onInput={this.props.onGenChange}>
                 <select className="form-select" id="dd_type">
-                    <option value="1">INSERT type DATA HERE</option>
+                    <option defaultValue hidden value="NO_GEN"> --- </option>
+                    {this.props.genList.map( gen =>
+                        <option key={gen} value={gen}> {gen} </option>
+                    )}
                 </select>
                 <label htmlFor="dd_type">Generation type</label>
             </div>

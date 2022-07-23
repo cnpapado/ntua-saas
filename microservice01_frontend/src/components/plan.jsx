@@ -46,7 +46,7 @@ export default function Plan() {
 									<div className="row">
 										<label htmlFor="days_left" className="col-4 col-form-label text-end">Days left:</label>
 										<div className="col-2">
-											<input type="number" className="form-control" id="days_left" defaultValue="42" disabled/>
+											<input type="number" className="form-control" id="days_left" defaultValue={isNaN(window.localStorage.getItem('daysLeft'))?0:window.localStorage.getItem('daysLeft')} disabled/>
 										</div>
 
 										<label htmlFor="extend_by" className="col-4 col-form-label text-end">Extend by (days):</label>
@@ -60,7 +60,7 @@ export default function Plan() {
 					</div>
 
 					<div className="d-grid gap-5 d-flex justify-content-center">
-						<button type="submit" className="btn btn-primary">Extend</button>
+						<button type="submit" className="btn btn-primary" onClick={()=>{window.localStorage.setItem('daysLeft', parseInt(document.getElementById("extend_by").value)+parseInt(isNaN(window.localStorage.getItem('daysLeft'))?0:window.localStorage.getItem('daysLeft')))}}>Extend</button>
 						<button type="reset" className="btn btn-primary" onClick={() => console.log("Cancel clicked")}>Cancel</button>
 					</div>
 				</form>

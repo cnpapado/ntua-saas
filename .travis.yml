@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - docker build -f microservice02-cicd-demo/dockerfile.dev -t demoapp .
+  - docker build -f microservice02-cicd-demo-dev/dockerfile.dev -t demoapp .
 
 script:
   - docker run demoapp

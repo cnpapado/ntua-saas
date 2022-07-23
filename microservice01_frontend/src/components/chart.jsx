@@ -5,18 +5,88 @@ require("highcharts/modules/exporting")(Highcharts);    //<-- Top-right hamburge
 require("highcharts/modules/export-data")(Highcharts);  //<-- Download as CSV from hamburger menu
 
 class Chart extends Component {
-    componentDidMount() {
-        Highcharts.chart('container',  {
+    componentDidUpdate() {
+        let data = this.props.data;
+		console.log("ok",data);
+        if(data[0].hasOwnProperty('Error')) {  //=> no data for this country
+            data = []
+			Highcharts.chart('container',  {
+            title: {
+                text: ''    //<--- Inserting title will move the diagram down
+            },
             xAxis: {
-                categories: ['cat1', 'cat2', 'cat3']
+                categories: data.map( (e) => {
+                    return new Date(e['DateTime']._seconds * 1000).toISOString().substr(11, 8);
+                    //https://stackoverflow.com/questions/1322732/convert-seconds-to-hh-mm-ss-with-javascript
+                })
             },
             series: [
                 {
-                    name: 'John',
-                    data: [1, 2, 3]
+                    name: this.props.cty,
+                    data: data
+                }
+            ]
+			})
+        }
+		else if(data[0].hasOwnProperty('ActualGenerationOutput')) { 
+            Highcharts.chart('container',  {
+            title: {
+                text: ''    //<--- Inserting title will move the diagram down
+            },
+            xAxis: {
+                categories: data.map( (e) => {
+                    return new Date(e['DateTime']._seconds * 1000).toISOString().substr(11, 8);
+                    //https://stackoverflow.com/questions/1322732/convert-seconds-to-hh-mm-ss-with-javascript
+                })
+            },
+            series: [
+                {
+                    name: this.props.cty,
+                    data: data.map( (e) => { return parseInt(e['ActualGenerationOutput']) })
                 }
             ]
         })
+        }
+		else if(data[0].hasOwnProperty('TotalLoadValue')){
+			Highcharts.chart('container',  {
+            title: {
+                text: ''    //<--- Inserting title will move the diagram down
+            },
+            xAxis: {
+                categories: data.map( (e) => {
+                    return new Date(e['DateTime']._seconds * 1000).toISOString().substr(11, 8);
+                    //https://stackoverflow.com/questions/1322732/convert-seconds-to-hh-mm-ss-with-javascript
+                })
+            },
+            series: [
+                {
+                    name: this.props.cty,
+                    data: data.map( (e) => { return parseInt(e['TotalLoadValue']) })
+                }
+            ]
+        })
+		}
+		else if(data[0].hasOwnProperty('FlowValue')){
+			console.log("f");
+			Highcharts.chart('container',  {
+            title: {
+                text: ''    //<--- Inserting title will move the diagram down
+            },
+            xAxis: {
+                categories: data.map( (e) => {
+                    return new Date(e['DateTime']._seconds * 1000).toISOString().substr(11, 8);
+                    //https://stackoverflow.com/questions/1322732/convert-seconds-to-hh-mm-ss-with-javascript
+                })
+            },
+            series: [
+                {
+                    name: this.props.cty,
+                    data: data.map( (e) => { console.log(e['FlowValue']);return parseInt(e['FlowValue']) })
+                }
+            ]
+        })
+		}
+		
     }
 
     printCtyFlow() {
@@ -53,7 +123,7 @@ class Chart extends Component {
                 <figure id="container"></figure>
 
                 <div className="mt-3">
-                    Latest update DD.MM.YYY HH:MM
+                    Latest update {this?.props?.data[this.props.data.length-1]?.UpdateTime} 
                 </div>
                 <br/>
 

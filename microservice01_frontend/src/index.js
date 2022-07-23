@@ -15,6 +15,7 @@ import { AuthContextProvider } from './context/AuthContext';
 
 import SignIn from './components/SignIn';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -24,7 +25,7 @@ root.render(
 			  <Route path="/" element={<SignIn />} />
               <Route path="data" element={<Protected><Data /></Protected>} />
               <Route path="plan" element={<Protected><Plan /></Protected>} />
-              <Route path="map" element={<Protected><Map /></Protected>} />
+               <Route path="map" element={<Protected><Map /></Protected>} />
               <Route path="*" element={<NoPage />} />
           </Routes>
       </BrowserRouter>
