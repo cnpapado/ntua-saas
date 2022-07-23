@@ -10,9 +10,11 @@ _You have to open 6 terminals_
 * In 3 of them cd to /microservice03-fftp
 * Run npm install in order to install all the packages needed
 * In 1st 2nd and 3rd terminal run the command 
-_python3 publisher_deamon.py --dataset [fft/agpt/atl] --topic [fft/agpt/atl]-csv --start-date 2022-1-1 --end-date 2022-2-2 --sec X
+`python3 publisher_deamon.py --dataset [fft/agpt/atl] --topic [fft/agpt/atl]-csv --start-date 2022-1-1 --end-date 2022-2-2 --sec X`
 ***where X is user defined*** 
 _recommended time: 10 minutes to resemble functionality of entsoe service but in order to quickly spot data updates/fixes 40-50 secs will suffice_
+_you also have 3 options(depending on the dataset) eg. for agpt dataset you have to run the command:_
+`python3 publisher_deamon.py --dataset agpt --topic agpt-csv --start-date 2022-1-1 --end-date 2022-2-2 --sec 20`
 * In the other 3 terminals
     * Cd to microservice05-ATL then `npm install` and then `npm run dev` --- Topics from kafka being read and data being inserted into database
     * Cd to microservice09-AGPT and follow the above mentioned steps
